@@ -48,6 +48,7 @@
     suggestionAnchor: false
     suggestionUI: false
     tableSlot: false
+    tutorialController: false
     wallSlot: false
     wristbandOffset: false
     wristbandUI: false
@@ -65,12 +66,13 @@
       suggestionUI: !<MappingBased.AssignableType_3> 00000000-0000-0000-0000-000000000000
       agendaUI: !<MappingBased.AssignableType_4> 00000000-0000-0000-0000-000000000000
       audioController: !<MappingBased.AssignableType_5> 00000000-0000-0000-0000-000000000000
+      tutorialController: !<MappingBased.AssignableType_6> 00000000-0000-0000-0000-000000000000
       tableSlot: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
       wallSlot: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
       suggestionAnchor: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
       agendaAnchor: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
       handUiRoot: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
-      learnModeController: !<MappingBased.AssignableType_6> 00000000-0000-0000-0000-000000000000
+      learnModeController: !<MappingBased.AssignableType_7> 00000000-0000-0000-0000-000000000000
       learnModeAnchor: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
       lookDotThreshold: 0.450000
       preferRightHand: true
@@ -95,12 +97,13 @@
     - '// @input AssignableType_3 suggestionUI {"hint":"Table suggestion card UI ScriptComponent"}'
     - '// @input AssignableType_4 agendaUI {"hint":"Wall agenda UI ScriptComponent"}'
     - '// @input AssignableType_5 audioController {"hint":"Audio controller ScriptComponent"}'
+    - '// @input AssignableType_6 tutorialController {"hint":"Host tutorial VO controller (Tutorial_01..12)"}'
     - '// @input SceneObject tableSlot {"hint":"Optional slot for stand-in table mesh (only used if Show Stand-In Room Meshes)"}'
     - '// @input SceneObject wallSlot {"hint":"Optional slot for stand-in wall mesh (only used if Show Stand-In Room Meshes)"}'
     - '// @input SceneObject suggestionAnchor {"hint":"World anchor for the suggestion card (table-surface height in the preview room)"}'
     - '// @input SceneObject agendaAnchor {"hint":"World anchor for the agenda panel (wall position in the preview room)"}'
     - '// @input SceneObject handUiRoot {"hint":"Hand-followed root for wristband + palm menu"}'
-    - '// @input AssignableType_6 learnModeController {"hint":"Learn Mode shell controller"}'
+    - '// @input AssignableType_7 learnModeController {"hint":"Learn Mode shell controller"}'
     - '// @input SceneObject learnModeAnchor {"hint":"World anchor for the Learn Mode shell (picker + mode stubs)"}'
     - '// @ui {"widget":"group_end"}'
     - '// @ui {"widget":"separator"}'

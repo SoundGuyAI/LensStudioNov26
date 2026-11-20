@@ -1,0 +1,56 @@
+- !<AssetImportMetadata/66a7aca3-01bb-49fd-a5e4-33fff75326a0>
+  ImportedAssetIds:
+    TypeScriptAsset: !<reference> 7c48194d-ee9d-4d32-9b56-1afa586bac8b
+  ImporterName: TypeScriptAssetImporter
+  PrimaryAsset: !<reference> 7c48194d-ee9d-4d32-9b56-1afa586bac8b
+  PackageType: NotAPackage
+  LegacyPackagePolicy: ~
+  ExtraData:
+    {}
+  AssetDataMap:
+    TypeScriptAsset: !<own> afd5505d-f317-4cf5-8a56-66bf4fef8926
+  DependentFiles:
+    []
+  ImporterSettings: !<AssetImporterSettings>
+    {}
+  CompressionSettings: !<own> 00000000-0000-0000-0000-000000000000
+- !<TypeScriptAssetData/afd5505d-f317-4cf5-8a56-66bf4fef8926>
+  SvgIcon: ""
+  SetupScript:
+    code: ""
+  Description: ""
+  VersionMajor: 0
+  VersionMinor: 0
+  VersionPatch: 0
+  VersionPrerelease: ""
+  UpdateOrder: 0
+  ComponentUid: 00000000-0000-0000-0000-000000000000
+  ExportUid: 00000000-0000-0000-0000-000000000000
+  PackagePolicy: CanBeUnpacked
+  ScriptInputsHidden:
+    {}
+  ScriptTypesHidden:
+    {}
+  ReadMe: !<reference> 00000000-0000-0000-0000-000000000000
+  DeclarationFile: !<reference> 00000000-0000-0000-0000-000000000000
+  Tags:
+    []
+  Attachments:
+    []
+  DefaultScriptInputs:
+    -
+      {}
+  ScriptTypes:
+    -
+      {}
+  InputLines:
+    - '// @ui {"widget":"label", "label":"<span style=\"color: #60A5FA;\">RehearsalBandTutorialController – host VO tour</span>"}'
+    - '// @ui {"widget":"separator"}'
+    - '// @ui {"widget":"group_start", "label":"References"}'
+    - '// @input AssignableType_1 audioController {"hint":"Shared audio controller (VO uses LowPower channel)"}'
+    - '// @ui {"widget":"group_end"}'
+    - '// @ui {"widget":"group_start", "label":"Settings"}'
+    - '// @input bool autoPlayOnStart = true {"hint":"Play Tutorial_01..12 once after lens start"}'
+    - '// @input float gapBetweenCuesSec = 0.7 {"hint":"Silence between cues (seconds)", "widget":"slider", "min":0.2, "max":2.5, "step":0.1}'
+    - '// @input float startDelaySec = 1.2 {"hint":"Delay before Welcome starts (lets anchors settle)", "widget":"slider", "min":0.5, "max":4, "step":0.1}'
+    - '// @ui {"widget":"group_end"}'

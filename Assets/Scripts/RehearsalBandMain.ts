@@ -15,6 +15,7 @@ import {RehearsalBandPalmMenuUI} from "./RehearsalBandPalmMenuUI"
 import {RehearsalBandState} from "./RehearsalBandState"
 import {PlacementHit, RehearsalBandSurfacePlacer} from "./RehearsalBandSurfacePlacer"
 import {RehearsalBandSuggestionUI} from "./RehearsalBandSuggestionUI"
+import {RehearsalBandTutorialController} from "./RehearsalBandTutorialController"
 import {RehearsalBandWristbandUI} from "./RehearsalBandWristbandUI"
 
 // requireAsset paths MUST be string literals (Lens bundler resolves at compile time).
@@ -46,6 +47,10 @@ export class RehearsalBandMain extends BaseScriptComponent {
   @input
   @hint("Audio controller ScriptComponent")
   audioController!: RehearsalBandAudioController
+
+  @input
+  @hint("Host tutorial VO controller (Tutorial_01..12)")
+  tutorialController!: RehearsalBandTutorialController
 
   @input
   @allowUndefined
@@ -142,6 +147,7 @@ export class RehearsalBandMain extends BaseScriptComponent {
       !this.suggestionUI ||
       !this.agendaUI ||
       !this.audioController ||
+      !this.tutorialController ||
       !this.suggestionAnchor ||
       !this.agendaAnchor ||
       !this.handUiRoot ||
@@ -245,6 +251,8 @@ export class RehearsalBandMain extends BaseScriptComponent {
       // Close restores host UI only — never starts/stops the workshop timer.
       this.learnModeController.onClosed.add(() => {
         this.audioController.playClick()
+        // Resume host onboarding VO if the tour was still in progress.
+        this.tutorialController.resumeTutorial()
       })
     })
   }
@@ -421,6 +429,8 @@ export class RehearsalBandMain extends BaseScriptComponent {
 
   private handleOpenInstructions(): void {
     this.audioController.playClick()
+    // Pause onboarding VO while Learn Mode is open so narrations do not stack.
+    this.tutorialController.pauseTutorial()
     const exercise = this.state.getCurrentExercise()
     this.learnModeController.openForExercise(exercise)
     this.updateLearnModePlacement()

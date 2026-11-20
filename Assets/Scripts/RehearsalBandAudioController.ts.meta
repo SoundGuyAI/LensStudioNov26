@@ -43,8 +43,9 @@
     -
       {}
   InputLines:
-    - '// @ui {"widget":"label", "label":"<span style=\"color: #60A5FA;\">RehearsalBandAudioController – host SFX</span>"}'
+    - '// @ui {"widget":"label", "label":"<span style=\"color: #60A5FA;\">RehearsalBandAudioController – host SFX + VO</span>"}'
     - '// @ui {"widget":"separator"}'
     - '// @ui {"widget":"group_start", "label":"Settings"}'
     - '// @input float sfxVolume = 0.85 {"hint":"Volume for interactive host cues", "widget":"slider", "min":0, "max":1, "step":0.05}'
+    - '// @input float voVolume = 0.95 {"hint":"Volume for tutorial / hint narration", "widget":"slider", "min":0, "max":1, "step":0.05}'
     - '// @ui {"widget":"group_end"}'
