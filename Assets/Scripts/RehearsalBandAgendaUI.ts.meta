@@ -1,0 +1,56 @@
+- !<AssetImportMetadata/93133e48-65ee-4839-a745-f317c8aff020>
+  ImportedAssetIds:
+    TypeScriptAsset: !<reference> 1554945b-e4e0-44c9-a1c0-f7459a7be085
+  ImporterName: TypeScriptAssetImporter
+  PrimaryAsset: !<reference> 1554945b-e4e0-44c9-a1c0-f7459a7be085
+  PackageType: NotAPackage
+  LegacyPackagePolicy: ~
+  ExtraData:
+    {}
+  AssetDataMap:
+    TypeScriptAsset: !<own> c301f0e5-3121-4b06-a0f3-0d98dfda02de
+  DependentFiles:
+    []
+  ImporterSettings: !<AssetImporterSettings>
+    {}
+  CompressionSettings: !<own> 00000000-0000-0000-0000-000000000000
+- !<TypeScriptAssetData/c301f0e5-3121-4b06-a0f3-0d98dfda02de>
+  SvgIcon: ""
+  SetupScript:
+    code: ""
+  Description: ""
+  VersionMajor: 0
+  VersionMinor: 0
+  VersionPatch: 0
+  VersionPrerelease: ""
+  UpdateOrder: 0
+  ComponentUid: e355e96f-5baa-4a60-9eaf-ea1d861faf0e
+  ExportUid: 00000000-0000-0000-0000-000000000000
+  PackagePolicy: CanBeUnpacked
+  ScriptInputsHidden:
+    panelHeight: false
+    panelWidth: false
+    titleLabel: false
+  ScriptTypesHidden:
+    {}
+  ReadMe: !<reference> 00000000-0000-0000-0000-000000000000
+  DeclarationFile: !<reference> 00000000-0000-0000-0000-000000000000
+  Tags:
+    []
+  Attachments:
+    []
+  DefaultScriptInputs:
+    - panelWidth: !<float> 70.000000
+      panelHeight: !<float> 48.000000
+      titleLabel: Workshop Agenda
+  ScriptTypes:
+    -
+      {}
+  InputLines:
+    - '// @ui {"widget":"label", "label":"<span style=\"color: #60A5FA;\">RehearsalBandAgendaUI – wall agenda</span>"}'
+    - '// @ui {"widget":"separator"}'
+    - '// @ui {"widget":"group_start", "label":"Settings"}'
+    - '// @input float panelWidth = 70 {"hint":"Agenda panel width in cm", "widget":"slider", "min":50, "max":90, "step":1}'
+    - '// @input float panelHeight = 48 {"hint":"Agenda panel height in cm", "widget":"slider", "min":35, "max":70, "step":1}'
+    - '// @input string titleLabel = "Workshop Agenda" {"hint":"Title shown at top of the agenda"}'
+    - '// @ui {"widget":"group_end"}'

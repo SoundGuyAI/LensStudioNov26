@@ -1,0 +1,104 @@
+- !<AssetImportMetadata/afbb70fe-d687-437b-8cf1-2ad409c5d12c>
+  ImportedAssetIds:
+    TypeScriptAsset: !<reference> 502385cb-2d01-4978-90a1-e40283ce6cdc
+  ImporterName: TypeScriptAssetImporter
+  PrimaryAsset: !<reference> 502385cb-2d01-4978-90a1-e40283ce6cdc
+  PackageType: NotAPackage
+  LegacyPackagePolicy: ~
+  ExtraData:
+    {}
+  AssetDataMap:
+    TypeScriptAsset: !<own> 27a15c1f-d159-4e4d-8ca1-e44e46d21f67
+  DependentFiles:
+    []
+  ImporterSettings: !<AssetImporterSettings>
+    {}
+  CompressionSettings: !<own> 00000000-0000-0000-0000-000000000000
+- !<TypeScriptAssetData/27a15c1f-d159-4e4d-8ca1-e44e46d21f67>
+  SvgIcon: ""
+  SetupScript:
+    code: ""
+  Description: ""
+  VersionMajor: 0
+  VersionMinor: 0
+  VersionPatch: 0
+  VersionPrerelease: ""
+  UpdateOrder: 0
+  ComponentUid: d680b5f2-fac4-4ae7-9b62-c2e190771052
+  ExportUid: 00000000-0000-0000-0000-000000000000
+  PackagePolicy: CanBeUnpacked
+  ScriptInputsHidden:
+    agendaAnchor: false
+    agendaUI: false
+    audioController: false
+    debugColliders: false
+    forceShowAgenda: false
+    forceShowHandUI: false
+    handUiRoot: false
+    lookDotThreshold: false
+    palmMenuOffset: false
+    palmMenuUI: false
+    preferRightHand: false
+    showStandInRoomMeshes: false
+    suggestionAnchor: false
+    suggestionUI: false
+    tableSlot: false
+    wallSlot: false
+    wristbandOffset: false
+    wristbandUI: false
+  ScriptTypesHidden:
+    {}
+  ReadMe: !<reference> 00000000-0000-0000-0000-000000000000
+  DeclarationFile: !<reference> 00000000-0000-0000-0000-000000000000
+  Tags:
+    []
+  Attachments:
+    []
+  DefaultScriptInputs:
+    - wristbandUI: !<MappingBased.AssignableType_1> 00000000-0000-0000-0000-000000000000
+      palmMenuUI: !<MappingBased.AssignableType_2> 00000000-0000-0000-0000-000000000000
+      suggestionUI: !<MappingBased.AssignableType_3> 00000000-0000-0000-0000-000000000000
+      agendaUI: !<MappingBased.AssignableType_4> 00000000-0000-0000-0000-000000000000
+      audioController: !<MappingBased.AssignableType_5> 00000000-0000-0000-0000-000000000000
+      tableSlot: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
+      wallSlot: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
+      suggestionAnchor: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
+      agendaAnchor: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
+      handUiRoot: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
+      lookDotThreshold: 0.450000
+      preferRightHand: true
+      wristbandOffset: !<Vec3> {x: 0.000000, y: 6.000000, z: 4.000000}
+      palmMenuOffset: !<Vec3> {x: 0.000000, y: 14.000000, z: 2.000000}
+      forceShowHandUI: false
+      forceShowAgenda: false
+      showStandInRoomMeshes: false
+      debugColliders: false
+  ScriptTypes:
+    -
+      {}
+  InputLines:
+    - '// @ui {"widget":"label", "label":"<span style=\"color: #60A5FA;\">RehearsalBandMain – improv host orchestrator</span>"}'
+    - '// @ui {"widget":"separator"}'
+    - '// @ui {"widget":"group_start", "label":"References"}'
+    - '// @input AssignableType_1 wristbandUI {"hint":"Wristband UI ScriptComponent"}'
+    - '// @input AssignableType_2 palmMenuUI {"hint":"Palm menu UI ScriptComponent"}'
+    - '// @input AssignableType_3 suggestionUI {"hint":"Table suggestion card UI ScriptComponent"}'
+    - '// @input AssignableType_4 agendaUI {"hint":"Wall agenda UI ScriptComponent"}'
+    - '// @input AssignableType_5 audioController {"hint":"Audio controller ScriptComponent"}'
+    - '// @input SceneObject tableSlot {"hint":"Optional slot for stand-in table mesh (only used if Show Stand-In Room Meshes)"}'
+    - '// @input SceneObject wallSlot {"hint":"Optional slot for stand-in wall mesh (only used if Show Stand-In Room Meshes)"}'
+    - '// @input SceneObject suggestionAnchor {"hint":"World anchor for the suggestion card (table-surface height in the preview room)"}'
+    - '// @input SceneObject agendaAnchor {"hint":"World anchor for the agenda panel (wall position in the preview room)"}'
+    - '// @input SceneObject handUiRoot {"hint":"Hand-followed root for wristband + palm menu"}'
+    - '// @ui {"widget":"group_end"}'
+    - '// @ui {"widget":"separator"}'
+    - '// @ui {"widget":"group_start", "label":"Settings"}'
+    - '// @input float lookDotThreshold = 0.45 {"hint":"Dot threshold for looking at hand / wall (higher = stricter)", "widget":"slider", "min":0.2, "max":0.95, "step":0.05}'
+    - '// @input bool preferRightHand = true {"hint":"Prefer right hand for the wristband; falls back to left"}'
+    - '// @input vec3 wristbandOffset = {0,6,4} {"hint":"Offset of wristband from wrist joint (cm, local-ish world offset)"}'
+    - '// @input vec3 palmMenuOffset = {0,14,2} {"hint":"Offset of palm menu from wrist (cm)"}'
+    - '// @input bool forceShowHandUI {"hint":"When true, hand UI stays visible even if not looking at the hand"}'
+    - '// @input bool forceShowAgenda {"hint":"When true, wall agenda stays visible even if not looking at the wall"}'
+    - '// @input bool showStandInRoomMeshes {"hint":"Spawn pretend wooden table/easel meshes. Leave OFF — use Interactive Preview room instead."}'
+    - '// @input bool debugColliders {"hint":"Wireframe every collider for hit-zone diagnosis"}'
+    - '// @ui {"widget":"group_end"}'

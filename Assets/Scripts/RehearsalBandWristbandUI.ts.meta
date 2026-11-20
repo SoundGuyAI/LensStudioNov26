@@ -1,0 +1,59 @@
+- !<AssetImportMetadata/aadab7bb-7cc2-4699-92fa-1d966602e94c>
+  ImportedAssetIds:
+    TypeScriptAsset: !<reference> dd4d237b-90c5-4d1a-8432-d929fd891c71
+  ImporterName: TypeScriptAssetImporter
+  PrimaryAsset: !<reference> dd4d237b-90c5-4d1a-8432-d929fd891c71
+  PackageType: NotAPackage
+  LegacyPackagePolicy: ~
+  ExtraData:
+    {}
+  AssetDataMap:
+    TypeScriptAsset: !<own> 4a904efd-faf6-444b-93c5-c2a7d2ee0aef
+  DependentFiles:
+    []
+  ImporterSettings: !<AssetImporterSettings>
+    {}
+  CompressionSettings: !<own> 00000000-0000-0000-0000-000000000000
+- !<TypeScriptAssetData/4a904efd-faf6-444b-93c5-c2a7d2ee0aef>
+  SvgIcon: ""
+  SetupScript:
+    code: ""
+  Description: ""
+  VersionMajor: 0
+  VersionMinor: 0
+  VersionPatch: 0
+  VersionPrerelease: ""
+  UpdateOrder: 0
+  ComponentUid: acf057e9-e4f4-49f4-90eb-7bd475cb67db
+  ExportUid: 00000000-0000-0000-0000-000000000000
+  PackagePolicy: CanBeUnpacked
+  ScriptInputsHidden:
+    defaultExerciseName: false
+    defaultTimerText: false
+    panelHeight: false
+    panelWidth: false
+  ScriptTypesHidden:
+    {}
+  ReadMe: !<reference> 00000000-0000-0000-0000-000000000000
+  DeclarationFile: !<reference> 00000000-0000-0000-0000-000000000000
+  Tags:
+    []
+  Attachments:
+    []
+  DefaultScriptInputs:
+    - panelWidth: !<float> 18.000000
+      panelHeight: !<float> 10.000000
+      defaultExerciseName: Relationship Swap
+      defaultTimerText: "8:00"
+  ScriptTypes:
+    -
+      {}
+  InputLines:
+    - '// @ui {"widget":"label", "label":"<span style=\"color: #60A5FA;\">RehearsalBandWristbandUI – glanceable band</span>"}'
+    - '// @ui {"widget":"separator"}'
+    - '// @ui {"widget":"group_start", "label":"Settings"}'
+    - '// @input float panelWidth = 18 {"hint":"Wristband panel width in cm", "widget":"slider", "min":12, "max":28, "step":0.5}'
+    - '// @input float panelHeight = 10 {"hint":"Wristband panel height in cm", "widget":"slider", "min":6, "max":16, "step":0.5}'
+    - '// @input string defaultExerciseName = "Relationship Swap" {"hint":"Default exercise label for sizing"}'
+    - '// @input string defaultTimerText = "8:00" {"hint":"Default timer label"}'
+    - '// @ui {"widget":"group_end"}'

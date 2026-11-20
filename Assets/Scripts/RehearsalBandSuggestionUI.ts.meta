@@ -1,0 +1,59 @@
+- !<AssetImportMetadata/7612b9e4-c1a8-4120-b1e9-841d6e35eb2f>
+  ImportedAssetIds:
+    TypeScriptAsset: !<reference> 0a839892-4ecc-45db-82ab-0a4e43dec9dc
+  ImporterName: TypeScriptAssetImporter
+  PrimaryAsset: !<reference> 0a839892-4ecc-45db-82ab-0a4e43dec9dc
+  PackageType: NotAPackage
+  LegacyPackagePolicy: ~
+  ExtraData:
+    {}
+  AssetDataMap:
+    TypeScriptAsset: !<own> d73a2451-73cf-414c-a021-97e5e7fee998
+  DependentFiles:
+    []
+  ImporterSettings: !<AssetImporterSettings>
+    {}
+  CompressionSettings: !<own> 00000000-0000-0000-0000-000000000000
+- !<TypeScriptAssetData/d73a2451-73cf-414c-a021-97e5e7fee998>
+  SvgIcon: ""
+  SetupScript:
+    code: ""
+  Description: ""
+  VersionMajor: 0
+  VersionMinor: 0
+  VersionPatch: 0
+  VersionPrerelease: ""
+  UpdateOrder: 0
+  ComponentUid: a31fb8ac-e43d-45e2-8be1-a5f88c14ea57
+  ExportUid: 00000000-0000-0000-0000-000000000000
+  PackagePolicy: CanBeUnpacked
+  ScriptInputsHidden:
+    defaultBody: false
+    defaultKind: false
+    panelHeight: false
+    panelWidth: false
+  ScriptTypesHidden:
+    {}
+  ReadMe: !<reference> 00000000-0000-0000-0000-000000000000
+  DeclarationFile: !<reference> 00000000-0000-0000-0000-000000000000
+  Tags:
+    []
+  Attachments:
+    []
+  DefaultScriptInputs:
+    - panelWidth: !<float> 26.000000
+      panelHeight: !<float> 16.000000
+      defaultKind: Location
+      defaultBody: Museum after hours
+  ScriptTypes:
+    -
+      {}
+  InputLines:
+    - '// @ui {"widget":"label", "label":"<span style=\"color: #60A5FA;\">RehearsalBandSuggestionUI – table card</span>"}'
+    - '// @ui {"widget":"separator"}'
+    - '// @ui {"widget":"group_start", "label":"Settings"}'
+    - '// @input float panelWidth = 26 {"hint":"Suggestion card width in cm", "widget":"slider", "min":18, "max":36, "step":0.5}'
+    - '// @input float panelHeight = 16 {"hint":"Suggestion card height in cm", "widget":"slider", "min":10, "max":24, "step":0.5}'
+    - '// @input string defaultKind = "Location" {"hint":"Placeholder kind label"}'
+    - '// @input string defaultBody = "Museum after hours" {"hint":"Placeholder suggestion body (longest expected)"}'
+    - '// @ui {"widget":"group_end"}'

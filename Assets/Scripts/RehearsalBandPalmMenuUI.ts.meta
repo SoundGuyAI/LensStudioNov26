@@ -1,0 +1,53 @@
+- !<AssetImportMetadata/a688c484-1f58-478c-8d0a-a08268ed0d66>
+  ImportedAssetIds:
+    TypeScriptAsset: !<reference> ba45c723-7055-4518-aae0-3ac1a7fc403b
+  ImporterName: TypeScriptAssetImporter
+  PrimaryAsset: !<reference> ba45c723-7055-4518-aae0-3ac1a7fc403b
+  PackageType: NotAPackage
+  LegacyPackagePolicy: ~
+  ExtraData:
+    {}
+  AssetDataMap:
+    TypeScriptAsset: !<own> c9fd8830-fc84-4dc3-a6df-f43972172b06
+  DependentFiles:
+    []
+  ImporterSettings: !<AssetImporterSettings>
+    {}
+  CompressionSettings: !<own> 00000000-0000-0000-0000-000000000000
+- !<TypeScriptAssetData/c9fd8830-fc84-4dc3-a6df-f43972172b06>
+  SvgIcon: ""
+  SetupScript:
+    code: ""
+  Description: ""
+  VersionMajor: 0
+  VersionMinor: 0
+  VersionPatch: 0
+  VersionPrerelease: ""
+  UpdateOrder: 0
+  ComponentUid: 2b776345-23b2-4a6e-ac21-42d4a85be9bd
+  ExportUid: 00000000-0000-0000-0000-000000000000
+  PackagePolicy: CanBeUnpacked
+  ScriptInputsHidden:
+    panelHeight: false
+    panelWidth: false
+  ScriptTypesHidden:
+    {}
+  ReadMe: !<reference> 00000000-0000-0000-0000-000000000000
+  DeclarationFile: !<reference> 00000000-0000-0000-0000-000000000000
+  Tags:
+    []
+  Attachments:
+    []
+  DefaultScriptInputs:
+    - panelWidth: !<float> 16.000000
+      panelHeight: !<float> 14.000000
+  ScriptTypes:
+    -
+      {}
+  InputLines:
+    - '// @ui {"widget":"label", "label":"<span style=\"color: #60A5FA;\">RehearsalBandPalmMenuUI – palm host controls</span>"}'
+    - '// @ui {"widget":"separator"}'
+    - '// @ui {"widget":"group_start", "label":"Settings"}'
+    - '// @input float panelWidth = 16 {"hint":"Palm menu width in cm", "widget":"slider", "min":12, "max":24, "step":0.5}'
+    - '// @input float panelHeight = 14 {"hint":"Palm menu height in cm", "widget":"slider", "min":8, "max":20, "step":0.5}'
+    - '// @ui {"widget":"group_end"}'
