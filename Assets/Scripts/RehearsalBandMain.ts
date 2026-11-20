@@ -10,6 +10,7 @@ import {HandInputData} from "SpectaclesInteractionKit.lspkg/Providers/HandInputD
 import WorldCameraFinderProvider from "SpectaclesInteractionKit.lspkg/Providers/CameraProvider/WorldCameraFinderProvider"
 import {RehearsalBandAgendaUI} from "./RehearsalBandAgendaUI"
 import {RehearsalBandAudioController} from "./RehearsalBandAudioController"
+import {RehearsalBandLearnModeController} from "./RehearsalBandLearnModeController"
 import {RehearsalBandPalmMenuUI} from "./RehearsalBandPalmMenuUI"
 import {RehearsalBandState} from "./RehearsalBandState"
 import {PlacementHit, RehearsalBandSurfacePlacer} from "./RehearsalBandSurfacePlacer"
@@ -67,6 +68,14 @@ export class RehearsalBandMain extends BaseScriptComponent {
   @input
   @hint("Hand-followed root for wristband + palm menu")
   handUiRoot!: SceneObject
+
+  @input
+  @hint("Learn Mode shell controller")
+  learnModeController!: RehearsalBandLearnModeController
+
+  @input
+  @hint("World anchor for the Learn Mode shell (picker + mode stubs)")
+  learnModeAnchor!: SceneObject
   @ui.group_end
 
   @ui.separator
@@ -87,6 +96,14 @@ export class RehearsalBandMain extends BaseScriptComponent {
   @input
   @hint("Offset of palm menu from wrist (cm)")
   palmMenuOffset: vec3 = new vec3(0, 14, 2)
+
+  @input
+  @hint("Offset of Learn Mode above the table/suggestion surface (cm). Y is world-up.")
+  learnModeTableOffset: vec3 = new vec3(0, 24, 0)
+
+  @input
+  @hint("Camera fallback offset if no table/suggestion anchor (cm): forward, right, up")
+  learnModeCameraFallbackOffset: vec3 = new vec3(70, -8, 8)
 
   @input
   @hint("When true, hand UI stays visible even if not looking at the hand")
@@ -127,7 +144,9 @@ export class RehearsalBandMain extends BaseScriptComponent {
       !this.audioController ||
       !this.suggestionAnchor ||
       !this.agendaAnchor ||
-      !this.handUiRoot
+      !this.handUiRoot ||
+      !this.learnModeController ||
+      !this.learnModeAnchor
     ) {
       print("RehearsalBandMain: required @input not wired. Check Phase B bootstrap.")
       return
@@ -221,7 +240,12 @@ export class RehearsalBandMain extends BaseScriptComponent {
       this.palmMenuUI.onResetTimer.add(() => this.handleResetTimer())
       this.palmMenuUI.onPlaceTable.add(() => this.beginTablePlacement())
       this.palmMenuUI.onPlaceWall.add(() => this.beginWallPlacement())
+      this.palmMenuUI.onOpenInstructions.add(() => this.handleOpenInstructions())
       this.suggestionUI.onChangeSuggestion.add(() => this.handleSuggestionFromTable())
+      // Close restores host UI only — never starts/stops the workshop timer.
+      this.learnModeController.onClosed.add(() => {
+        this.audioController.playClick()
+      })
     })
   }
 
@@ -236,6 +260,7 @@ export class RehearsalBandMain extends BaseScriptComponent {
     this.updateTimerLabel()
     this.updateHandFollowAndGating()
     this.updateAgendaLookGating()
+    this.updateLearnModePlacement()
   }
 
   private beginTablePlacement(): void {
@@ -392,6 +417,47 @@ export class RehearsalBandMain extends BaseScriptComponent {
       ? this.state.nextSuggestion()
       : this.state.openSuggestion()
     this.suggestionUI.showSuggestion(suggestion.kind, suggestion.text)
+  }
+
+  private handleOpenInstructions(): void {
+    this.audioController.playClick()
+    const exercise = this.state.getCurrentExercise()
+    this.learnModeController.openForExercise(exercise)
+    this.updateLearnModePlacement()
+  }
+
+  private updateLearnModePlacement(): void {
+    if (!this.learnModeController.isOpen()) {
+      return
+    }
+
+    // Prefer the table / suggestion surface so Instructions is not head-locked.
+    // User Place Table moves suggestionAnchor; auto room place also puts it at table height.
+    if (this.suggestionAnchor) {
+      const tablePos = this.suggestionAnchor.getTransform().getWorldPosition()
+      const pos = tablePos.add(
+        new vec3(
+          this.learnModeTableOffset.x,
+          this.learnModeTableOffset.y,
+          this.learnModeTableOffset.z,
+        ),
+      )
+      this.learnModeAnchor.getTransform().setWorldPosition(pos)
+      this.faceAnchorTowardCamera(this.learnModeAnchor)
+      return
+    }
+
+    const camTransform = this.cameraProvider.getComponent().getTransform()
+    const camPos = camTransform.getWorldPosition()
+    const look = camTransform.forward.uniformScale(-1)
+    const right = camTransform.right
+    const up = camTransform.up
+    const fallback = camPos
+      .add(look.uniformScale(this.learnModeCameraFallbackOffset.x))
+      .add(right.uniformScale(this.learnModeCameraFallbackOffset.y))
+      .add(up.uniformScale(this.learnModeCameraFallbackOffset.z))
+    this.learnModeAnchor.getTransform().setWorldPosition(fallback)
+    this.faceAnchorTowardCamera(this.learnModeAnchor)
   }
 
   private handleSuggestionFromTable(): void {

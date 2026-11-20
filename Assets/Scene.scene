@@ -236,6 +236,21 @@
     []
   Components:
     []
+- !<SceneObject/080b2ac1-ba93-45a7-9442-6a35925227de>
+  PrefabRemaps:
+    []
+  Name: Demo3DUI
+  Enabled: true
+  Layers: 1
+  LocalTransform: !<TransformEntity>
+    Position: {x: 0.000000, y: -6.000000, z: 0.000000}
+    Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Scale: {x: 1.000000, y: 1.000000, z: 1.000000}
+    HasSegmentScaleCompensation: false
+  Children:
+    []
+  Components:
+    - !<own> e176b777-350a-4e6a-81dc-9028cbde463f
 - !<ScriptComponent/0847d2bb-a13f-4c4a-a404-169f67308f6f>
   PrefabRemaps:
     []
@@ -992,6 +1007,24 @@
     - !<own> 8fe2a532-9bf3-4cde-b598-04ce5470718d
   Components:
     []
+- !<SceneObject/47d1a2ae-a189-4487-9271-5d87b62d5dc9>
+  PrefabRemaps:
+    []
+  Name: LearnModeAnchor
+  Enabled: true
+  Layers: 1
+  LocalTransform: !<TransformEntity>
+    Position: {x: 0.000000, y: 0.000000, z: -90.000000}
+    Rotation: {x: 0.000000, y: 180.000000, z: 0.000000}
+    Scale: {x: 1.000000, y: 1.000000, z: 1.000000}
+    HasSegmentScaleCompensation: false
+  Children:
+    - !<own> 66aa3113-4136-4030-8227-5c0fc7ef2688
+    - !<own> 96b2f02a-a57a-4a47-87df-7d03366fb921
+    - !<own> a9a68452-fe2f-4832-bd69-0e63adb0401d
+    - !<own> 080b2ac1-ba93-45a7-9442-6a35925227de
+  Components:
+    - !<own> 67f4b4a5-1e5c-49ff-8961-ba6d0358519c
 - !<SceneObject/4c195c04-c397-454e-bd08-3485f37d84fe>
   PrefabRemaps:
     []
@@ -1049,7 +1082,10 @@
     preferRightHand: true
     wristbandOffset: true
     palmMenuOffset: true
+    learnModeTableOffset: true
+    learnModeCameraFallbackOffset: true
     showStandInRoomMeshes: true
+    placeAnchorsInFrontOfCamera: true
     debugColliders: true
   ScriptTypesDefault:
     {}
@@ -1065,13 +1101,18 @@
       suggestionAnchor: !<reference.SceneObject> 3546d89b-930e-4e9c-bee0-f2f8814df501
       agendaAnchor: !<reference.SceneObject> 4d0b598d-e79e-4260-8184-06146631227e
       handUiRoot: !<reference.SceneObject> 8a1d7837-0dc1-4baf-9af9-aad8ee3ddac6
+      learnModeController: !<MappingBased.AssignableType_6> 67f4b4a5-1e5c-49ff-8961-ba6d0358519c
+      learnModeAnchor: !<reference.SceneObject> 47d1a2ae-a189-4487-9271-5d87b62d5dc9
       lookDotThreshold: 0.350000
       preferRightHand: true
       wristbandOffset: !<Vec3> {x: 0.000000, y: 6.000000, z: 4.000000}
       palmMenuOffset: !<Vec3> {x: 0.000000, y: 14.000000, z: 2.000000}
+      learnModeTableOffset: !<Vec3> {x: 0.000000, y: 24.000000, z: 0.000000}
+      learnModeCameraFallbackOffset: !<Vec3> {x: 70.000000, y: -8.000000, z: 8.000000}
       forceShowHandUI: true
       forceShowAgenda: true
       showStandInRoomMeshes: false
+      placeAnchorsInFrontOfCamera: true
       debugColliders: false
   ScriptTypes:
     "":
@@ -1302,6 +1343,40 @@
     - !<own> 80574bd1-697b-4bb5-b9ce-13b340146d82
   Components:
     - !<own> ccf4d3bc-d3c2-4580-b9c5-62f164ef7eef
+- !<SceneObject/66aa3113-4136-4030-8227-5c0fc7ef2688>
+  PrefabRemaps:
+    []
+  Name: LearnModePickerUI
+  Enabled: true
+  Layers: 1
+  LocalTransform: !<TransformEntity>
+    Position: {x: 0.000000, y: 8.000000, z: 0.000000}
+    Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Scale: {x: 1.000000, y: 1.000000, z: 1.000000}
+    HasSegmentScaleCompensation: false
+  Children:
+    []
+  Components:
+    - !<own> 6c2a9f55-fee2-443d-88c4-67b15bfcec27
+- !<ScriptComponent/67f4b4a5-1e5c-49ff-8961-ba6d0358519c>
+  PrefabRemaps:
+    []
+  Name: RehearsalBandLearnModeController
+  Enabled: true
+  ScriptAsset: !<reference> 606f3dd4-a203-484d-a5ef-b02fff66f475
+  ScriptInputsDefault:
+    {}
+  ScriptTypesDefault:
+    {}
+  ScriptInputs:
+    "":
+      pickerUI: !<MappingBased.AssignableType_1> 6c2a9f55-fee2-443d-88c4-67b15bfcec27
+      teleprompterUI: !<MappingBased.AssignableType_2> addc9cf6-d680-4ed4-8481-2935a57cdb5a
+      videoPlayer: !<MappingBased.AssignableType_3> bf44f199-8c6b-4cf0-942b-778ffb56cd7d
+      demo3d: !<MappingBased.AssignableType_4> e176b777-350a-4e6a-81dc-9028cbde463f
+  ScriptTypes:
+    "":
+      {}
 - !<ScriptComponent/68e8c378-0108-4d29-8d53-45de73fe2756>
   PrefabRemaps:
     []
@@ -1382,6 +1457,24 @@
     - !<own> 0e778a10-bd57-4a2a-b20a-b6f4326e8058
   Components:
     []
+- !<ScriptComponent/6c2a9f55-fee2-443d-88c4-67b15bfcec27>
+  PrefabRemaps:
+    []
+  Name: RehearsalBandLearnModePickerUI
+  Enabled: true
+  ScriptAsset: !<reference> 20717064-1890-4c9a-886a-620ddebf6478
+  ScriptInputsDefault:
+    panelWidth: true
+    panelHeight: true
+  ScriptTypesDefault:
+    {}
+  ScriptInputs:
+    "":
+      panelWidth: !<float> 32.000000
+      panelHeight: !<float> 14.000000
+  ScriptTypes:
+    "":
+      {}
 - !<SceneObject/6dbaab8f-d98a-4f36-b836-1d7c8a0cca87>
   PrefabRemaps:
     []
@@ -1655,6 +1748,7 @@
   Children:
     - !<own> 3546d89b-930e-4e9c-bee0-f2f8814df501
     - !<own> 4d0b598d-e79e-4260-8184-06146631227e
+    - !<own> 47d1a2ae-a189-4487-9271-5d87b62d5dc9
   Components:
     []
 - !<SceneObject/879ce45b-bd5e-40ff-a3fe-d821523427e4>
@@ -1767,13 +1861,12 @@
   ScriptAsset: !<reference> ba45c723-7055-4518-aae0-3ac1a7fc403b
   ScriptInputsDefault:
     panelWidth: true
-    panelHeight: true
   ScriptTypesDefault:
     {}
   ScriptInputs:
     "":
       panelWidth: !<float> 16.000000
-      panelHeight: !<float> 14.000000
+      panelHeight: !<float> 26.000000
   ScriptTypes:
     "":
       {}
@@ -1793,6 +1886,21 @@
     - !<own> e9454e66-5d09-4a8a-bcd7-dea762326a48
   Components:
     []
+- !<SceneObject/96b2f02a-a57a-4a47-87df-7d03366fb921>
+  PrefabRemaps:
+    []
+  Name: TeleprompterUI
+  Enabled: true
+  Layers: 1
+  LocalTransform: !<TransformEntity>
+    Position: {x: 0.000000, y: -6.000000, z: 0.000000}
+    Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Scale: {x: 1.000000, y: 1.000000, z: 1.000000}
+    HasSegmentScaleCompensation: false
+  Children:
+    []
+  Components:
+    - !<own> addc9cf6-d680-4ed4-8481-2935a57cdb5a
 - !<SceneObject/988c408a-99dc-47e6-b7c4-efbf4bf8dc3c>
   PrefabRemaps:
     []
@@ -2030,6 +2138,21 @@
     []
   Components:
     - !<own> 11c4bb09-7c38-4023-9802-74f9f28709a9
+- !<SceneObject/a9a68452-fe2f-4832-bd69-0e63adb0401d>
+  PrefabRemaps:
+    []
+  Name: VideoPlayerUI
+  Enabled: true
+  Layers: 1
+  LocalTransform: !<TransformEntity>
+    Position: {x: 0.000000, y: -6.000000, z: 0.000000}
+    Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Scale: {x: 1.000000, y: 1.000000, z: 1.000000}
+    HasSegmentScaleCompensation: false
+  Children:
+    []
+  Components:
+    - !<own> bf44f199-8c6b-4cf0-942b-778ffb56cd7d
 - !<SceneObject/abfa4c71-3560-46f0-9471-90e212f21185>
   PrefabRemaps:
     []
@@ -2045,6 +2168,24 @@
     - !<own> f6687ab7-52ac-408d-a892-8a9559125450
   Components:
     []
+- !<ScriptComponent/addc9cf6-d680-4ed4-8481-2935a57cdb5a>
+  PrefabRemaps:
+    []
+  Name: RehearsalBandTeleprompterUI
+  Enabled: true
+  ScriptAsset: !<reference> b7f47002-4ed2-41be-8be0-6a5a8d7a8772
+  ScriptInputsDefault:
+    panelWidth: true
+    panelHeight: true
+  ScriptTypesDefault:
+    {}
+  ScriptInputs:
+    "":
+      panelWidth: !<float> 32.000000
+      panelHeight: !<float> 12.000000
+  ScriptTypes:
+    "":
+      {}
 - !<SceneObject/b22d97e6-4c06-4135-af29-d26adb2b9d86>
   PrefabRemaps:
     []
@@ -2225,6 +2366,24 @@
     []
   Components:
     []
+- !<ScriptComponent/bf44f199-8c6b-4cf0-942b-778ffb56cd7d>
+  PrefabRemaps:
+    []
+  Name: RehearsalBandLearnVideoPlayer
+  Enabled: true
+  ScriptAsset: !<reference> af921c1c-7f20-48d3-bb40-fed926b97b53
+  ScriptInputsDefault:
+    panelWidth: true
+    panelHeight: true
+  ScriptTypesDefault:
+    {}
+  ScriptInputs:
+    "":
+      panelWidth: !<float> 32.000000
+      panelHeight: !<float> 12.000000
+  ScriptTypes:
+    "":
+      {}
 - !<ScriptComponent/c8e031d3-a8a1-468a-a419-427f8556de4c>
   PrefabRemaps:
     []
@@ -2550,6 +2709,24 @@
   BlendNormals: false
   BlendShapes:
     {}
+- !<ScriptComponent/e176b777-350a-4e6a-81dc-9028cbde463f>
+  PrefabRemaps:
+    []
+  Name: RehearsalBandLearnDemo3D
+  Enabled: true
+  ScriptAsset: !<reference> d9f8e503-15b4-47bb-b755-c5017bcb4c71
+  ScriptInputsDefault:
+    panelWidth: true
+    panelHeight: true
+  ScriptTypesDefault:
+    {}
+  ScriptInputs:
+    "":
+      panelWidth: !<float> 32.000000
+      panelHeight: !<float> 12.000000
+  ScriptTypes:
+    "":
+      {}
 - !<SceneObject/e2ba526d-75d1-466b-86a5-9cd7c42dca84>
   PrefabRemaps:
     []

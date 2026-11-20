@@ -1,0 +1,53 @@
+- !<AssetImportMetadata/c9f27333-db52-4362-9df7-6d648924f946>
+  ImportedAssetIds:
+    TypeScriptAsset: !<reference> b7f47002-4ed2-41be-8be0-6a5a8d7a8772
+  ImporterName: TypeScriptAssetImporter
+  PrimaryAsset: !<reference> b7f47002-4ed2-41be-8be0-6a5a8d7a8772
+  PackageType: NotAPackage
+  LegacyPackagePolicy: ~
+  ExtraData:
+    {}
+  AssetDataMap:
+    TypeScriptAsset: !<own> 7310dc93-bc55-4b76-a4d8-143d1c33fab6
+  DependentFiles:
+    []
+  ImporterSettings: !<AssetImporterSettings>
+    {}
+  CompressionSettings: !<own> 00000000-0000-0000-0000-000000000000
+- !<TypeScriptAssetData/7310dc93-bc55-4b76-a4d8-143d1c33fab6>
+  SvgIcon: ""
+  SetupScript:
+    code: ""
+  Description: ""
+  VersionMajor: 0
+  VersionMinor: 0
+  VersionPatch: 0
+  VersionPrerelease: ""
+  UpdateOrder: 0
+  ComponentUid: 26414fe5-5722-4eca-a1ab-eae430a2d46f
+  ExportUid: 00000000-0000-0000-0000-000000000000
+  PackagePolicy: CanBeUnpacked
+  ScriptInputsHidden:
+    panelHeight: false
+    panelWidth: false
+  ScriptTypesHidden:
+    {}
+  ReadMe: !<reference> 00000000-0000-0000-0000-000000000000
+  DeclarationFile: !<reference> 00000000-0000-0000-0000-000000000000
+  Tags:
+    []
+  Attachments:
+    []
+  DefaultScriptInputs:
+    - panelWidth: !<float> 32.000000
+      panelHeight: !<float> 12.000000
+  ScriptTypes:
+    -
+      {}
+  InputLines:
+    - '// @ui {"widget":"label", "label":"<span style=\"color: #60A5FA;\">RehearsalBandTeleprompterUI – stub (Package B)</span>"}'
+    - '// @ui {"widget":"separator"}'
+    - '// @ui {"widget":"group_start", "label":"Settings"}'
+    - '// @input float panelWidth = 32 {"widget":"slider", "min":18, "max":40, "step":0.5}'
+    - '// @input float panelHeight = 12 {"widget":"slider", "min":8, "max":24, "step":0.5}'
+    - '// @ui {"widget":"group_end"}'

@@ -1,0 +1,53 @@
+- !<AssetImportMetadata/db09257a-90d8-4557-98f3-45f5c86c9022>
+  ImportedAssetIds:
+    TypeScriptAsset: !<reference> d9f8e503-15b4-47bb-b755-c5017bcb4c71
+  ImporterName: TypeScriptAssetImporter
+  PrimaryAsset: !<reference> d9f8e503-15b4-47bb-b755-c5017bcb4c71
+  PackageType: NotAPackage
+  LegacyPackagePolicy: ~
+  ExtraData:
+    {}
+  AssetDataMap:
+    TypeScriptAsset: !<own> e9093edb-0c01-4d00-b69a-e24718e6713a
+  DependentFiles:
+    []
+  ImporterSettings: !<AssetImporterSettings>
+    {}
+  CompressionSettings: !<own> 00000000-0000-0000-0000-000000000000
+- !<TypeScriptAssetData/e9093edb-0c01-4d00-b69a-e24718e6713a>
+  SvgIcon: ""
+  SetupScript:
+    code: ""
+  Description: ""
+  VersionMajor: 0
+  VersionMinor: 0
+  VersionPatch: 0
+  VersionPrerelease: ""
+  UpdateOrder: 0
+  ComponentUid: 8e35f4c9-bc5c-489a-811b-5b5025830599
+  ExportUid: 00000000-0000-0000-0000-000000000000
+  PackagePolicy: CanBeUnpacked
+  ScriptInputsHidden:
+    panelHeight: false
+    panelWidth: false
+  ScriptTypesHidden:
+    {}
+  ReadMe: !<reference> 00000000-0000-0000-0000-000000000000
+  DeclarationFile: !<reference> 00000000-0000-0000-0000-000000000000
+  Tags:
+    []
+  Attachments:
+    []
+  DefaultScriptInputs:
+    - panelWidth: !<float> 32.000000
+      panelHeight: !<float> 12.000000
+  ScriptTypes:
+    -
+      {}
+  InputLines:
+    - '// @ui {"widget":"label", "label":"<span style=\"color: #60A5FA;\">RehearsalBandLearnDemo3D – stub (Package D)</span>"}'
+    - '// @ui {"widget":"separator"}'
+    - '// @ui {"widget":"group_start", "label":"Settings"}'
+    - '// @input float panelWidth = 32 {"widget":"slider", "min":18, "max":40, "step":0.5}'
+    - '// @input float panelHeight = 12 {"widget":"slider", "min":8, "max":24, "step":0.5}'
+    - '// @ui {"widget":"group_end"}'
