@@ -521,11 +521,13 @@
   ScriptAsset: !<reference> b9cfdb5d-147a-4668-aca1-27479933f338
   ScriptInputsDefault:
     sfxVolume: true
+    voVolume: true
   ScriptTypesDefault:
     {}
   ScriptInputs:
     "":
       sfxVolume: 0.850000
+      voVolume: 0.950000
   ScriptTypes:
     "":
       {}
@@ -1096,12 +1098,13 @@
       suggestionUI: !<MappingBased.AssignableType_3> c9cc9ae7-db17-4e51-a2b2-800f59bc006f
       agendaUI: !<MappingBased.AssignableType_4> 68e8c378-0108-4d29-8d53-45de73fe2756
       audioController: !<MappingBased.AssignableType_5> 13bd2ba9-fccb-44a0-bef4-488f37f09686
+      tutorialController: !<MappingBased.AssignableType_6> 894b728f-96e5-4588-985f-945e98c00896
       tableSlot: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
       wallSlot: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
       suggestionAnchor: !<reference.SceneObject> 3546d89b-930e-4e9c-bee0-f2f8814df501
       agendaAnchor: !<reference.SceneObject> 4d0b598d-e79e-4260-8184-06146631227e
       handUiRoot: !<reference.SceneObject> 8a1d7837-0dc1-4baf-9af9-aad8ee3ddac6
-      learnModeController: !<MappingBased.AssignableType_6> 67f4b4a5-1e5c-49ff-8961-ba6d0358519c
+      learnModeController: !<MappingBased.AssignableType_7> 67f4b4a5-1e5c-49ff-8961-ba6d0358519c
       learnModeAnchor: !<reference.SceneObject> 47d1a2ae-a189-4487-9271-5d87b62d5dc9
       lookDotThreshold: 0.350000
       preferRightHand: true
@@ -1769,6 +1772,27 @@
     - !<own> 1fc7fa3e-6910-4741-b8a7-1b6660a39a9d
   Components:
     - !<own> 28e05826-1521-46fa-a54c-80f2957ec80c
+- !<ScriptComponent/894b728f-96e5-4588-985f-945e98c00896>
+  PrefabRemaps:
+    []
+  Name: RehearsalBandTutorialController
+  Enabled: true
+  ScriptAsset: !<reference> 7c48194d-ee9d-4d32-9b56-1afa586bac8b
+  ScriptInputsDefault:
+    autoPlayOnStart: true
+    gapBetweenCuesSec: true
+    startDelaySec: true
+  ScriptTypesDefault:
+    {}
+  ScriptInputs:
+    "":
+      audioController: !<MappingBased.AssignableType_1> 13bd2ba9-fccb-44a0-bef4-488f37f09686
+      autoPlayOnStart: true
+      gapBetweenCuesSec: 0.700000
+      startDelaySec: 1.200000
+  ScriptTypes:
+    "":
+      {}
 - !<SceneObject/8a1d7837-0dc1-4baf-9af9-aad8ee3ddac6>
   PrefabRemaps:
     []
@@ -2584,6 +2608,21 @@
     - !<own> 38562bff-09c5-4232-bff1-7ea62a1e7ec5
   Components:
     []
+- !<SceneObject/d5af48a6-192c-4627-9a11-138f489d4769>
+  PrefabRemaps:
+    []
+  Name: RehearsalBandTutorialController
+  Enabled: true
+  Layers: 1
+  LocalTransform: !<TransformEntity>
+    Position: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Scale: {x: 1.000000, y: 1.000000, z: 1.000000}
+    HasSegmentScaleCompensation: false
+  Children:
+    []
+  Components:
+    - !<own> 894b728f-96e5-4588-985f-945e98c00896
 - !<SceneObject/d5f63266-b1ce-419f-847b-3c9f347b3ee2>
   PrefabRemaps:
     []
@@ -2881,6 +2920,7 @@
     - !<own> 85a83739-a18b-4af1-ba24-e3bb704488d0
     - !<own> 8a1d7837-0dc1-4baf-9af9-aad8ee3ddac6
     - !<own> ef5b4b6c-8bd2-4154-8ad6-13d1524b6b9d
+    - !<own> d5af48a6-192c-4627-9a11-138f489d4769
   Components:
     - !<own> 5141c964-1576-4933-b326-9da7dc9cbb8b
 - !<SceneObject/f36287fd-ed56-442d-ba20-78f9ef6f3502>
