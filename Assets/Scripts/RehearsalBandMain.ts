@@ -12,6 +12,7 @@ import {RehearsalBandAgendaUI} from "./RehearsalBandAgendaUI"
 import {RehearsalBandAudioController} from "./RehearsalBandAudioController"
 import {RehearsalBandPalmMenuUI} from "./RehearsalBandPalmMenuUI"
 import {RehearsalBandState} from "./RehearsalBandState"
+import {PlacementHit, RehearsalBandSurfacePlacer} from "./RehearsalBandSurfacePlacer"
 import {RehearsalBandSuggestionUI} from "./RehearsalBandSuggestionUI"
 import {RehearsalBandWristbandUI} from "./RehearsalBandWristbandUI"
 
@@ -89,15 +90,19 @@ export class RehearsalBandMain extends BaseScriptComponent {
 
   @input
   @hint("When true, hand UI stays visible even if not looking at the hand")
-  forceShowHandUI: boolean = false
+  forceShowHandUI: boolean = true
 
   @input
   @hint("When true, wall agenda stays visible even if not looking at the wall")
-  forceShowAgenda: boolean = false
+  forceShowAgenda: boolean = true
 
   @input
   @hint("Spawn pretend wooden table/easel meshes. Leave OFF — use Interactive Preview room instead.")
   showStandInRoomMeshes: boolean = false
+
+  @input
+  @hint("Place table/wall/hand anchors in front of the live DeviceTracking camera (needed for Interactive Preview rooms)")
+  placeAnchorsInFrontOfCamera: boolean = true
 
   @input
   @hint("Wireframe every collider for hit-zone diagnosis")
@@ -107,7 +112,11 @@ export class RehearsalBandMain extends BaseScriptComponent {
   private state = new RehearsalBandState()
   private handProvider = HandInputData.getInstance()
   private cameraProvider = WorldCameraFinderProvider.getInstance()
+  private surfacePlacer = new RehearsalBandSurfacePlacer()
   private lastTimerLabel = ""
+  private anchorPlaceFramesLeft = 0
+  private tablePlacedByUser = false
+  private wallPlacedByUser = false
 
   onAwake(): void {
     if (
@@ -129,6 +138,9 @@ export class RehearsalBandMain extends BaseScriptComponent {
 
     // Child UI ScriptComponents awake after this parent — defer first push to OnStart.
     this.createEvent("OnStartEvent").bind(() => {
+      // DeviceTracking needs a few frames to settle in Interactive Preview rooms.
+      this.anchorPlaceFramesLeft = this.placeAnchorsInFrontOfCamera ? 12 : 0
+      this.placeWorldAnchorsFromCamera()
       const first = this.state.openSuggestion()
       this.suggestionUI.showSuggestion(first.kind, first.text)
       this.pushAllUi()
@@ -138,6 +150,48 @@ export class RehearsalBandMain extends BaseScriptComponent {
     })
 
     this.createEvent("UpdateEvent").bind(() => this.onUpdate())
+  }
+
+  /**
+   * Interactive Preview (Sunlit Room etc.) drives the Lens camera via DeviceTracking.
+   * Authored scene-origin positions are often outside that tracked frustum — place
+   * product UI relative to the live camera so panels appear in front of the user.
+   */
+  private placeWorldAnchorsFromCamera(): void {
+    if (!this.placeAnchorsInFrontOfCamera) {
+      return
+    }
+    const camTransform = this.cameraProvider.getComponent().getTransform()
+    const camPos = camTransform.getWorldPosition()
+    // Camera with identity rotation faces world -Z; Transform.forward is +Z.
+    // Content in front of the user must use -forward (look direction).
+    const look = camTransform.forward.uniformScale(-1)
+    const right = camTransform.right
+    const up = camTransform.up
+
+    const faceCamera = (anchor: SceneObject, worldPos: vec3): void => {
+      anchor.getTransform().setWorldPosition(worldPos)
+      this.faceAnchorTowardCamera(anchor)
+    }
+
+    // Only auto-place anchors the user has not pinned yet.
+    if (!this.tablePlacedByUser && this.surfacePlacer.getMode() !== "table") {
+      faceCamera(
+        this.suggestionAnchor,
+        camPos.add(look.uniformScale(80)).add(up.uniformScale(-8)),
+      )
+    }
+    if (!this.wallPlacedByUser && this.surfacePlacer.getMode() !== "wall") {
+      faceCamera(
+        this.agendaAnchor,
+        camPos.add(look.uniformScale(100)).add(right.uniformScale(25)).add(up.uniformScale(5)),
+      )
+    }
+    // Hand UI fallback when no tracked hand yet.
+    faceCamera(
+      this.handUiRoot,
+      camPos.add(look.uniformScale(55)).add(right.uniformScale(12)).add(up.uniformScale(-10)),
+    )
   }
 
   private instantiateRoomProps(): void {
@@ -165,16 +219,88 @@ export class RehearsalBandMain extends BaseScriptComponent {
       this.palmMenuUI.onRequestSuggestion.add(() => this.handleSuggestionFromPalm())
       this.palmMenuUI.onStartTimer.add(() => this.handleStartTimer())
       this.palmMenuUI.onResetTimer.add(() => this.handleResetTimer())
+      this.palmMenuUI.onPlaceTable.add(() => this.beginTablePlacement())
+      this.palmMenuUI.onPlaceWall.add(() => this.beginWallPlacement())
       this.suggestionUI.onChangeSuggestion.add(() => this.handleSuggestionFromTable())
     })
   }
 
   private onUpdate(): void {
+    if (this.anchorPlaceFramesLeft > 0 && !this.surfacePlacer.isPlacing()) {
+      this.anchorPlaceFramesLeft -= 1
+      this.placeWorldAnchorsFromCamera()
+    }
+    this.surfacePlacer.update()
     const dt = getDeltaTime()
     this.state.tick(dt)
     this.updateTimerLabel()
     this.updateHandFollowAndGating()
     this.updateAgendaLookGating()
+  }
+
+  private beginTablePlacement(): void {
+    this.audioController.playClick()
+    this.surfacePlacer.begin(
+      "table",
+      (_mode, hit) => {
+        if (hit) {
+          this.applySuggestionPlacement(hit, false)
+        }
+      },
+      (_mode, hit) => {
+        this.tablePlacedByUser = true
+        this.applySuggestionPlacement(hit, true)
+        this.audioController.playSuggestion()
+        print("RehearsalBand: suggestion card placed on table surface")
+      },
+    )
+  }
+
+  private beginWallPlacement(): void {
+    this.audioController.playClick()
+    this.surfacePlacer.begin(
+      "wall",
+      (_mode, hit) => {
+        if (hit) {
+          this.applyAgendaPlacement(hit, false)
+        }
+      },
+      (_mode, hit) => {
+        this.wallPlacedByUser = true
+        this.applyAgendaPlacement(hit, true)
+        this.audioController.playAdvance()
+        print("RehearsalBand: agenda placed on wall")
+      },
+    )
+  }
+
+  private applySuggestionPlacement(hit: PlacementHit, _final: boolean): void {
+    // Lift slightly off the surface so the BackPlate doesn't z-fight.
+    const pos = hit.position.add(hit.normal.uniformScale(3))
+    this.suggestionAnchor.getTransform().setWorldPosition(pos)
+    this.faceAnchorTowardCamera(this.suggestionAnchor)
+    this.suggestionUI.getSceneObject().enabled = true
+  }
+
+  private applyAgendaPlacement(hit: PlacementHit, _final: boolean): void {
+    const pos = hit.position.add(hit.normal.uniformScale(3))
+    this.agendaAnchor.getTransform().setWorldPosition(pos)
+    // Face into the room along the wall normal (BackPlate +Z toward user).
+    const n = hit.normal.normalize()
+    const yaw = Math.atan2(n.x, -n.z)
+    this.agendaAnchor.getTransform().setWorldRotation(quat.fromEulerAngles(0, yaw, 0))
+    this.agendaUI.getSceneObject().enabled = true
+  }
+
+  private faceAnchorTowardCamera(anchor: SceneObject): void {
+    const camPos = this.cameraProvider.getComponent().getTransform().getWorldPosition()
+    const worldPos = anchor.getTransform().getWorldPosition()
+    const fromCam = worldPos.sub(camPos)
+    if (fromCam.length > 0.01) {
+      const n = fromCam.normalize()
+      const yaw = Math.atan2(n.x, -n.z)
+      anchor.getTransform().setWorldRotation(quat.fromEulerAngles(0, yaw, 0))
+    }
   }
 
   private updateTimerLabel(): void {
@@ -201,10 +327,13 @@ export class RehearsalBandMain extends BaseScriptComponent {
       wristPos.add(this.wristbandOffset),
     )
 
-    // Billboard hand UI toward camera
-    const toCam = camPos.sub(this.handUiRoot.getTransform().getWorldPosition()).normalize()
-    const yaw = Math.atan2(toCam.x, -toCam.z)
-    this.handUiRoot.getTransform().setWorldRotation(quat.fromEulerAngles(0, yaw, 0))
+    // Billboard hand UI so BackPlate +Z faces the camera
+    const fromCam = this.handUiRoot.getTransform().getWorldPosition().sub(camPos)
+    if (fromCam.length > 0.01) {
+      const n = fromCam.normalize()
+      const yaw = Math.atan2(n.x, -n.z)
+      this.handUiRoot.getTransform().setWorldRotation(quat.fromEulerAngles(0, yaw, 0))
+    }
 
     // Place palm menu slightly above wristband locally
     this.palmMenuUI.getSceneObject().getTransform().setLocalPosition(this.palmMenuOffset)

@@ -38,6 +38,7 @@
     lookDotThreshold: false
     palmMenuOffset: false
     palmMenuUI: false
+    placeAnchorsInFrontOfCamera: false
     preferRightHand: false
     showStandInRoomMeshes: false
     suggestionAnchor: false
@@ -72,6 +73,7 @@
       forceShowHandUI: false
       forceShowAgenda: false
       showStandInRoomMeshes: false
+      placeAnchorsInFrontOfCamera: true
       debugColliders: false
   ScriptTypes:
     -
@@ -97,8 +99,9 @@
     - '// @input bool preferRightHand = true {"hint":"Prefer right hand for the wristband; falls back to left"}'
     - '// @input vec3 wristbandOffset = {0,6,4} {"hint":"Offset of wristband from wrist joint (cm, local-ish world offset)"}'
     - '// @input vec3 palmMenuOffset = {0,14,2} {"hint":"Offset of palm menu from wrist (cm)"}'
-    - '// @input bool forceShowHandUI {"hint":"When true, hand UI stays visible even if not looking at the hand"}'
-    - '// @input bool forceShowAgenda {"hint":"When true, wall agenda stays visible even if not looking at the wall"}'
+    - '// @input bool forceShowHandUI = true {"hint":"When true, hand UI stays visible even if not looking at the hand"}'
+    - '// @input bool forceShowAgenda = true {"hint":"When true, wall agenda stays visible even if not looking at the wall"}'
     - '// @input bool showStandInRoomMeshes {"hint":"Spawn pretend wooden table/easel meshes. Leave OFF — use Interactive Preview room instead."}'
+    - '// @input bool placeAnchorsInFrontOfCamera = true {"hint":"Place table/wall/hand anchors in front of the live DeviceTracking camera (needed for Interactive Preview rooms)"}'
     - '// @input bool debugColliders {"hint":"Wireframe every collider for hit-zone diagnosis"}'
     - '// @ui {"widget":"group_end"}'
