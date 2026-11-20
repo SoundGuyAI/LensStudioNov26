@@ -2200,13 +2200,13 @@
   ScriptAsset: !<reference> b7f47002-4ed2-41be-8be0-6a5a8d7a8772
   ScriptInputsDefault:
     panelWidth: true
-    panelHeight: true
+    panelHeight: false
   ScriptTypesDefault:
     {}
   ScriptInputs:
     "":
       panelWidth: !<float> 32.000000
-      panelHeight: !<float> 12.000000
+      panelHeight: !<float> 22.000000
   ScriptTypes:
     "":
       {}

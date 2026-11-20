@@ -40,14 +40,14 @@
     []
   DefaultScriptInputs:
     - panelWidth: !<float> 32.000000
-      panelHeight: !<float> 12.000000
+      panelHeight: !<float> 22.000000
   ScriptTypes:
     -
       {}
   InputLines:
-    - '// @ui {"widget":"label", "label":"<span style=\"color: #60A5FA;\">RehearsalBandTeleprompterUI – stub (Package B)</span>"}'
+    - '// @ui {"widget":"label", "label":"<span style=\"color: #60A5FA;\">RehearsalBandTeleprompterUI – host teach cues</span>"}'
     - '// @ui {"widget":"separator"}'
     - '// @ui {"widget":"group_start", "label":"Settings"}'
     - '// @input float panelWidth = 32 {"widget":"slider", "min":18, "max":40, "step":0.5}'
-    - '// @input float panelHeight = 12 {"widget":"slider", "min":8, "max":24, "step":0.5}'
+    - '// @input float panelHeight = 22 {"widget":"slider", "min":10, "max":36, "step":0.5}'
     - '// @ui {"widget":"group_end"}'

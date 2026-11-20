@@ -1,11 +1,12 @@
 /**
  * RehearsalBandLearnModeController — open/close Learn Mode + active teach surface.
- * Owns: shell visibility, mode switching, wiring picker ↔ stub panels.
- * Must not: start/stop workshop timer; author Package B–D content.
+ * Owns: shell visibility, mode switching, wiring picker ↔ teach panels.
+ * Must not: start/stop workshop timer; author Package C–D media content.
  */
 
 import Event from "SpectaclesInteractionKit.lspkg/Utils/Event"
 import {Exercise} from "./RehearsalBandState"
+import {getLearnGamePackForExercise} from "./LearnGames/LearnGameContent"
 import {LearnModeKind, RehearsalBandLearnModePickerUI} from "./RehearsalBandLearnModePickerUI"
 import {RehearsalBandTeleprompterUI} from "./RehearsalBandTeleprompterUI"
 import {RehearsalBandLearnVideoPlayer} from "./RehearsalBandLearnVideoPlayer"
@@ -22,7 +23,7 @@ export class RehearsalBandLearnModeController extends BaseScriptComponent {
   pickerUI!: RehearsalBandLearnModePickerUI
 
   @input
-  @hint("Teleprompter stub panel (Package B)")
+  @hint("Teleprompter panel (Package B)")
   teleprompterUI!: RehearsalBandTeleprompterUI
 
   @input
@@ -63,8 +64,22 @@ export class RehearsalBandLearnModeController extends BaseScriptComponent {
     this.isShellOpen = true
     this.getSceneObject().enabled = true
     this.pickerUI.setExerciseTitle(exercise.name)
+    this.applyContentForExercise(exercise.name)
     this.setMode("teleprompter")
     print(`RehearsalBand: Learn Mode open — ${exercise.name}`)
+  }
+
+  private applyContentForExercise(exerciseName: string): void {
+    const pack = getLearnGamePackForExercise(exerciseName)
+    if (!pack) {
+      this.teleprompterUI.setLines([])
+      print(`RehearsalBand: no LearnGamePack for "${exerciseName}"`)
+      return
+    }
+    this.teleprompterUI.setLines(pack.teleprompterLines)
+    print(
+      `RehearsalBand: teleprompter loaded ${pack.id} (${pack.teleprompterLines.length} lines)`,
+    )
   }
 
   close(): void {
