@@ -38,3 +38,9 @@ Workspaces/**
 
 # Added by Lens Studio (LEAF plugin)
 leaf_plugin_settings.json
+
+# Local agent / generation scratch (not part of the Lens)
+.virtual-scene.json
+tempAssetGen/
+tempMeshGen/
+.icon_tmp/
