@@ -1,0 +1,59 @@
+- !<AssetImportMetadata/01c99535-07da-46df-8ec3-9a451bf31443>
+  ImportedAssetIds:
+    TypeScriptAsset: !<reference> 606f3dd4-a203-484d-a5ef-b02fff66f475
+  ImporterName: TypeScriptAssetImporter
+  PrimaryAsset: !<reference> 606f3dd4-a203-484d-a5ef-b02fff66f475
+  PackageType: NotAPackage
+  LegacyPackagePolicy: ~
+  ExtraData:
+    {}
+  AssetDataMap:
+    TypeScriptAsset: !<own> d508a898-0ca3-4076-8233-9f8713ec90f3
+  DependentFiles:
+    []
+  ImporterSettings: !<AssetImporterSettings>
+    {}
+  CompressionSettings: !<own> 00000000-0000-0000-0000-000000000000
+- !<TypeScriptAssetData/d508a898-0ca3-4076-8233-9f8713ec90f3>
+  SvgIcon: ""
+  SetupScript:
+    code: ""
+  Description: ""
+  VersionMajor: 0
+  VersionMinor: 0
+  VersionPatch: 0
+  VersionPrerelease: ""
+  UpdateOrder: 0
+  ComponentUid: 54e6d708-c77b-409d-81df-2f82b3217bd7
+  ExportUid: 00000000-0000-0000-0000-000000000000
+  PackagePolicy: CanBeUnpacked
+  ScriptInputsHidden:
+    demo3d: false
+    pickerUI: false
+    teleprompterUI: false
+    videoPlayer: false
+  ScriptTypesHidden:
+    {}
+  ReadMe: !<reference> 00000000-0000-0000-0000-000000000000
+  DeclarationFile: !<reference> 00000000-0000-0000-0000-000000000000
+  Tags:
+    []
+  Attachments:
+    []
+  DefaultScriptInputs:
+    - pickerUI: !<MappingBased.AssignableType_1> 00000000-0000-0000-0000-000000000000
+      teleprompterUI: !<MappingBased.AssignableType_2> 00000000-0000-0000-0000-000000000000
+      videoPlayer: !<MappingBased.AssignableType_3> 00000000-0000-0000-0000-000000000000
+      demo3d: !<MappingBased.AssignableType_4> 00000000-0000-0000-0000-000000000000
+  ScriptTypes:
+    -
+      {}
+  InputLines:
+    - '// @ui {"widget":"label", "label":"<span style=\"color: #60A5FA;\">RehearsalBandLearnModeController – Learn Mode shell</span>"}'
+    - '// @ui {"widget":"separator"}'
+    - '// @ui {"widget":"group_start", "label":"References"}'
+    - '// @input AssignableType_1 pickerUI {"hint":"Mode picker + Close chrome"}'
+    - '// @input AssignableType_2 teleprompterUI {"hint":"Teleprompter stub panel (Package B)"}'
+    - '// @input AssignableType_3 videoPlayer {"hint":"Video stub panel (Package C)"}'
+    - '// @input AssignableType_4 demo3d {"hint":"3D demo stub panel (Package D)"}'
+    - '// @ui {"widget":"group_end"}'

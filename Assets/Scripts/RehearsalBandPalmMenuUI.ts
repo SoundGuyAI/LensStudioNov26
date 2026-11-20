@@ -20,6 +20,7 @@ const imageMaterial = requireAsset("../Materials/ImageMaterial.mat") as Material
 const bulbIcon = requireAsset("../Icons/lightbulb.png") as Texture
 const timerIcon = requireAsset("../Icons/timer.png") as Texture
 const resetIcon = requireAsset("../Icons/restart_alt.png") as Texture
+const instructionsIcon = requireAsset("../Icons/menu_book.png") as Texture
 
 const FONT_SIZE_SCALE = 1.0
 function roleSize(distanceCm: number = 55): number {
@@ -38,9 +39,9 @@ export class RehearsalBandPalmMenuUI extends BaseScriptComponent {
   panelWidth: number = 18
 
   @input
-  @widget(new SliderWidget(10, 32, 0.5))
+  @widget(new SliderWidget(10, 36, 0.5))
   @hint("Palm menu height in cm")
-  panelHeight: number = 22
+  panelHeight: number = 26
   @ui.group_end
 
   public onRequestSuggestion: Event<void> = new Event<void>()
@@ -48,6 +49,7 @@ export class RehearsalBandPalmMenuUI extends BaseScriptComponent {
   public onResetTimer: Event<void> = new Event<void>()
   public onPlaceTable: Event<void> = new Event<void>()
   public onPlaceWall: Event<void> = new Event<void>()
+  public onOpenInstructions: Event<void> = new Event<void>()
 
   onAwake(): void {
     void imageMaterial
@@ -75,6 +77,7 @@ export class RehearsalBandPalmMenuUI extends BaseScriptComponent {
     this.addActionButton(content, "Suggestion", bulbIcon, () => this.onRequestSuggestion.invoke())
     this.addActionButton(content, "Start Timer", timerIcon, () => this.onStartTimer.invoke())
     this.addActionButton(content, "Reset Timer", resetIcon, () => this.onResetTimer.invoke())
+    this.addActionButton(content, "Instructions", instructionsIcon, () => this.onOpenInstructions.invoke())
     this.addActionButton(content, "Place Table", null, () => this.onPlaceTable.invoke())
     this.addActionButton(content, "Place Wall", null, () => this.onPlaceWall.invoke())
 

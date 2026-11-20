@@ -35,6 +35,10 @@
     forceShowAgenda: false
     forceShowHandUI: false
     handUiRoot: false
+    learnModeAnchor: false
+    learnModeCameraFallbackOffset: false
+    learnModeController: false
+    learnModeTableOffset: false
     lookDotThreshold: false
     palmMenuOffset: false
     palmMenuUI: false
@@ -66,10 +70,14 @@
       suggestionAnchor: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
       agendaAnchor: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
       handUiRoot: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
+      learnModeController: !<MappingBased.AssignableType_6> 00000000-0000-0000-0000-000000000000
+      learnModeAnchor: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
       lookDotThreshold: 0.450000
       preferRightHand: true
       wristbandOffset: !<Vec3> {x: 0.000000, y: 6.000000, z: 4.000000}
       palmMenuOffset: !<Vec3> {x: 0.000000, y: 14.000000, z: 2.000000}
+      learnModeTableOffset: !<Vec3> {x: 0.000000, y: 24.000000, z: 0.000000}
+      learnModeCameraFallbackOffset: !<Vec3> {x: 70.000000, y: -8.000000, z: 8.000000}
       forceShowHandUI: false
       forceShowAgenda: false
       showStandInRoomMeshes: false
@@ -92,6 +100,8 @@
     - '// @input SceneObject suggestionAnchor {"hint":"World anchor for the suggestion card (table-surface height in the preview room)"}'
     - '// @input SceneObject agendaAnchor {"hint":"World anchor for the agenda panel (wall position in the preview room)"}'
     - '// @input SceneObject handUiRoot {"hint":"Hand-followed root for wristband + palm menu"}'
+    - '// @input AssignableType_6 learnModeController {"hint":"Learn Mode shell controller"}'
+    - '// @input SceneObject learnModeAnchor {"hint":"World anchor for the Learn Mode shell (picker + mode stubs)"}'
     - '// @ui {"widget":"group_end"}'
     - '// @ui {"widget":"separator"}'
     - '// @ui {"widget":"group_start", "label":"Settings"}'
@@ -99,6 +109,8 @@
     - '// @input bool preferRightHand = true {"hint":"Prefer right hand for the wristband; falls back to left"}'
     - '// @input vec3 wristbandOffset = {0,6,4} {"hint":"Offset of wristband from wrist joint (cm, local-ish world offset)"}'
     - '// @input vec3 palmMenuOffset = {0,14,2} {"hint":"Offset of palm menu from wrist (cm)"}'
+    - '// @input vec3 learnModeTableOffset = {0,24,0} {"hint":"Offset of Learn Mode above the table/suggestion surface (cm). Y is world-up."}'
+    - '// @input vec3 learnModeCameraFallbackOffset = {70,-8,8} {"hint":"Camera fallback offset if no table/suggestion anchor (cm): forward, right, up"}'
     - '// @input bool forceShowHandUI = true {"hint":"When true, hand UI stays visible even if not looking at the hand"}'
     - '// @input bool forceShowAgenda = true {"hint":"When true, wall agenda stays visible even if not looking at the wall"}'
     - '// @input bool showStandInRoomMeshes {"hint":"Spawn pretend wooden table/easel meshes. Leave OFF — use Interactive Preview room instead."}'

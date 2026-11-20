@@ -1,0 +1,53 @@
+- !<AssetImportMetadata/bb4f4cb0-e084-47ec-a9ca-c12b12fef666>
+  ImportedAssetIds:
+    TypeScriptAsset: !<reference> 20717064-1890-4c9a-886a-620ddebf6478
+  ImporterName: TypeScriptAssetImporter
+  PrimaryAsset: !<reference> 20717064-1890-4c9a-886a-620ddebf6478
+  PackageType: NotAPackage
+  LegacyPackagePolicy: ~
+  ExtraData:
+    {}
+  AssetDataMap:
+    TypeScriptAsset: !<own> 00550c29-d692-4721-91f5-cb5dfb0b8b9c
+  DependentFiles:
+    []
+  ImporterSettings: !<AssetImporterSettings>
+    {}
+  CompressionSettings: !<own> 00000000-0000-0000-0000-000000000000
+- !<TypeScriptAssetData/00550c29-d692-4721-91f5-cb5dfb0b8b9c>
+  SvgIcon: ""
+  SetupScript:
+    code: ""
+  Description: ""
+  VersionMajor: 0
+  VersionMinor: 0
+  VersionPatch: 0
+  VersionPrerelease: ""
+  UpdateOrder: 0
+  ComponentUid: 1eeaec9d-0378-4714-a894-77564850a1ef
+  ExportUid: 00000000-0000-0000-0000-000000000000
+  PackagePolicy: CanBeUnpacked
+  ScriptInputsHidden:
+    panelHeight: false
+    panelWidth: false
+  ScriptTypesHidden:
+    {}
+  ReadMe: !<reference> 00000000-0000-0000-0000-000000000000
+  DeclarationFile: !<reference> 00000000-0000-0000-0000-000000000000
+  Tags:
+    []
+  Attachments:
+    []
+  DefaultScriptInputs:
+    - panelWidth: !<float> 32.000000
+      panelHeight: !<float> 14.000000
+  ScriptTypes:
+    -
+      {}
+  InputLines:
+    - '// @ui {"widget":"label", "label":"<span style=\"color: #60A5FA;\">RehearsalBandLearnModePickerUI – Learn Mode chrome</span>"}'
+    - '// @ui {"widget":"separator"}'
+    - '// @ui {"widget":"group_start", "label":"Settings"}'
+    - '// @input float panelWidth = 32 {"hint":"Picker panel width in cm", "widget":"slider", "min":20, "max":40, "step":0.5}'
+    - '// @input float panelHeight = 14 {"hint":"Picker panel height in cm", "widget":"slider", "min":10, "max":24, "step":0.5}'
+    - '// @ui {"widget":"group_end"}'
