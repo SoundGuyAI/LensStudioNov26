@@ -30,6 +30,8 @@ The timer does not auto-advance the agenda. The host starts it when ready and pi
 4. State — Modular TypeScript: session state, wristband / palm / suggestion / agenda UIs, surface placement, and audio feedback.
 5. Verify — LEAF scenarios cover the design-brief done criteria (wristband visible, Next advances agenda, suggestion change, agenda visible).
 
+Built solely by me using Cursor and Instinct (an AI assistant), starting from the plan lens still from the Devpost competition page, as the competition requires.
+
 ### Challenges we ran into
 
 - Designing for “look at the hand / table / wall” without real glasses — solved by anchoring UI in world space and proving the flow in Interactive Preview with mouse look + pinch.
