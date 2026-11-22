@@ -160,6 +160,7 @@ export class RehearsalBandMain extends BaseScriptComponent {
 
     this.instantiateRoomProps()
     this.bindUiEvents()
+    this.bindDemoHotkeys()
 
     // Child UI ScriptComponents awake after this parent — defer first push to OnStart.
     this.createEvent("OnStartEvent").bind(() => {
@@ -305,6 +306,51 @@ export class RehearsalBandMain extends BaseScriptComponent {
         print("RehearsalBand: agenda placed on wall")
       },
     )
+  }
+
+  /** Preview demo aids (InjectPreviewGesture key One/Two) — same place path without SIK Interact agent. */
+  private bindDemoHotkeys(): void {
+    this.createEvent("KeyPressEvent").bind((e: KeyPressEvent) => {
+      if (e.key === Keys.One) {
+        this.demoPlaceSuggestionOnTable()
+      } else if (e.key === Keys.Two) {
+        this.demoPlaceAgendaOnWall()
+      }
+    })
+  }
+
+  private demoPlaceSuggestionOnTable(): void {
+    const cam = this.cameraProvider.getComponent().getTransform()
+    const camPos = cam.getWorldPosition()
+    const fwd = cam.forward
+    const flat = new vec3(fwd.x, 0, fwd.z)
+    const dir = flat.length > 0.01 ? flat.normalize() : new vec3(0, 0, -1)
+    const hit: PlacementHit = {
+      position: new vec3(camPos.x + dir.x * 90, camPos.y - 70, camPos.z + dir.z * 90),
+      normal: vec3.up(),
+    }
+    this.audioController.playClick()
+    this.tablePlacedByUser = true
+    this.applySuggestionPlacement(hit, true)
+    this.audioController.playSuggestion()
+    print("RehearsalBand: suggestion card placed on table surface")
+  }
+
+  private demoPlaceAgendaOnWall(): void {
+    const cam = this.cameraProvider.getComponent().getTransform()
+    const camPos = cam.getWorldPosition()
+    const fwd = cam.forward
+    const flat = new vec3(fwd.x, 0, fwd.z)
+    const dir = flat.length > 0.01 ? flat.normalize() : new vec3(0, 0, -1)
+    const hit: PlacementHit = {
+      position: new vec3(camPos.x + dir.x * 140, camPos.y - 10, camPos.z + dir.z * 140),
+      normal: dir.uniformScale(-1),
+    }
+    this.audioController.playClick()
+    this.wallPlacedByUser = true
+    this.applyAgendaPlacement(hit, true)
+    this.audioController.playAdvance()
+    print("RehearsalBand: agenda placed on wall")
   }
 
   private applySuggestionPlacement(hit: PlacementHit, _final: boolean): void {

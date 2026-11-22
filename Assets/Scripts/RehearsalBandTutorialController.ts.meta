@@ -24,11 +24,14 @@
   VersionPatch: 0
   VersionPrerelease: ""
   UpdateOrder: 0
-  ComponentUid: 00000000-0000-0000-0000-000000000000
+  ComponentUid: 1ea4d27d-879a-49a5-b3cf-3ba455b0246b
   ExportUid: 00000000-0000-0000-0000-000000000000
   PackagePolicy: CanBeUnpacked
   ScriptInputsHidden:
-    {}
+    audioController: false
+    autoPlayOnStart: false
+    gapBetweenCuesSec: false
+    startDelaySec: false
   ScriptTypesHidden:
     {}
   ReadMe: !<reference> 00000000-0000-0000-0000-000000000000
@@ -38,8 +41,10 @@
   Attachments:
     []
   DefaultScriptInputs:
-    -
-      {}
+    - audioController: !<MappingBased.AssignableType_1> 00000000-0000-0000-0000-000000000000
+      autoPlayOnStart: true
+      gapBetweenCuesSec: 0.700000
+      startDelaySec: 1.200000
   ScriptTypes:
     -
       {}

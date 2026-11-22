@@ -29,6 +29,7 @@
   PackagePolicy: CanBeUnpacked
   ScriptInputsHidden:
     sfxVolume: false
+    voVolume: false
   ScriptTypesHidden:
     {}
   ReadMe: !<reference> 00000000-0000-0000-0000-000000000000
@@ -39,6 +40,7 @@
     []
   DefaultScriptInputs:
     - sfxVolume: 0.850000
+      voVolume: 0.950000
   ScriptTypes:
     -
       {}

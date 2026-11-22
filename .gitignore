@@ -44,3 +44,15 @@ leaf_plugin_settings.json
 tempAssetGen/
 tempMeshGen/
 .icon_tmp/
+
+# Local editor plugin installs (e.g. IconAtlas from Icons package)
+Plugins/
+
+# Demo video scratch (regen locally; upload MP4 to YouTube for Devpost)
+devpost/.venv-video/
+devpost/demo-video-frames/
+devpost/motion-frames/
+devpost/out/
+**/__pycache__/
+*.pyc
+.venv/
