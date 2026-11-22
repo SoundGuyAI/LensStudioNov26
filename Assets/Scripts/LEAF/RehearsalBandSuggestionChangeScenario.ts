@@ -1,5 +1,6 @@
 /**
- * Criterion 3 — At the table, pinch New Suggestion / ChangeSuggestion to advance pool.
+ * Criterion 3 — At the table, pinch the SuggestionUI card to advance pool.
+ * Interaction lives on the BackPlate (whole card), not the nested button label.
  */
 
 import {Scenario} from "Leaf.lspkg/Scenarios/scenario/Scenario"
@@ -19,7 +20,7 @@ export class RehearsalBandSuggestionChangeScenario extends Scenario {
     const beforeTexts = collectTextsUnder("SuggestionUI")
 
     const interactor = new RehearsalBandLeafInteractor()
-    await interactor.tapButton("ChangeSuggestion")
+    await interactor.tapButton("SuggestionUI")
     await sleep(400)
 
     const stillFirst = findTextIncluding("SuggestionUI", "Laundromat at midnight")

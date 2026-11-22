@@ -68,6 +68,18 @@ export class RehearsalBandSuggestionUI extends BaseScriptComponent {
     this.getSceneObject().createComponent("Component.Canvas")
     const backPlate = this.getSceneObject().createComponent(BackPlate.getTypeName()) as BackPlate
     backPlate.size = new vec2(this.panelWidth, this.panelHeight)
+    // Whole-card pinch advances the suggestion. Prefer BackPlate as the IK
+    // target (large collider) so LEAF does not hit target_overlap against the
+    // nested ChangeSuggestion button.
+    backPlate.onInitialized.add(() => {
+      const interactable = backPlate.interactable
+      if (!interactable) {
+        return
+      }
+      interactable.onTriggerEnd.add(() => {
+        this.onChangeSuggestion.invoke()
+      })
+    })
 
     const content = global.scene.createSceneObject("Content")
     content.setParent(this.getSceneObject())
@@ -144,10 +156,16 @@ export class RehearsalBandSuggestionUI extends BaseScriptComponent {
     t.verticalOverflow = VerticalOverflow.Overflow
     t.layoutRect = Rect.create(-(this.panelWidth - 3.5) / 2, (this.panelWidth - 3.5) / 2, -1.4, 1.4)
     so.createComponent(FlexItem.getTypeName())
-    this.createEvent("OnStartEvent").bind(() => {
-      btn.onTriggerUp.add(() => {
-        this.onChangeSuggestion.invoke()
-      })
+    // Visual affordance only — BackPlate owns the sole interactable so IK/SIK
+    // cannot resolve a nested ChangeSuggestion and raise target_overlap.
+    btn.onInitialized.add(() => {
+      if (btn.interactable) {
+        btn.interactable.enabled = false
+      }
+      const colliders = so.getComponents("ColliderComponent") as ColliderComponent[]
+      for (const collider of colliders) {
+        collider.enabled = false
+      }
     })
   }
 }
