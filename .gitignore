@@ -48,6 +48,12 @@ tempMeshGen/
 # Local editor plugin installs (e.g. IconAtlas from Icons package)
 Plugins/
 
+# Local-only Asset Library unpacks (GitHub LFS Put Forbidden for these)
+Packages/Icons.lspkg
+Packages/Icons.lspkg.meta
+Packages/Motion.lspkg
+Packages/Motion.lspkg.meta
+
 # Demo video scratch (regen locally; upload MP4 to YouTube for Devpost)
 devpost/.venv-video/
 devpost/demo-video-frames/
