@@ -3,7 +3,7 @@ name: Decode Learn Mode VO clips (one-time)
 on:
   push:
     branches: [docs/learn-mode-vo-delivery]
-    paths: ['agent/vo_payload/**']
+    paths: ['agent/vo_payload/DONE']
 
 permissions:
   contents: write
@@ -15,15 +15,17 @@ jobs:
       - uses: actions/checkout@v4
         with:
           lfs: true
-      - name: Unpack WAVs into Assets/LearnGames/ZipZapZop/VO
+      - name: Rebuild WAVs into Assets/LearnGames/ZipZapZop/VO
         run: |
           set -e
-          ls -la agent/vo_payload
-          mkdir -p Assets/LearnGames/ZipZapZop/VO
-          for f in agent/vo_payload/*.wav; do
-            n=$(basename "$f" | sed 's/^[0-9]*-//')
-            cp "$f" "Assets/LearnGames/ZipZapZop/VO/$n"
-          done
+          mkdir -p /tmp/vo Assets/LearnGames/ZipZapZop/VO
+          cat agent/vo_payload/part_* | base64 -d > /tmp/vo.tar
+          tar xf /tmp/vo.tar -C /tmp/vo
+          while read -r sum name; do
+            got=$(ffmpeg -v error -i "/tmp/vo/$name" -map 0:a -f md5 - | sed 's/MD5=//')
+            [ "$got" = "$sum" ] || { echo "MD5 mismatch for $name"; exit 1; }
+            ffmpeg -v error -y -i "/tmp/vo/$name" -c:a pcm_s16le "Assets/LearnGames/ZipZapZop/VO/${name%.flac}.wav"
+          done < /tmp/vo/expected.md5
           ls -la Assets/LearnGames/ZipZapZop/VO
           git rm -r -q agent/vo_payload
           git config user.name "SoundGuyAiAgents"
