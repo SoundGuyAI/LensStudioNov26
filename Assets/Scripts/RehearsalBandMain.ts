@@ -308,13 +308,24 @@ export class RehearsalBandMain extends BaseScriptComponent {
     )
   }
 
-  /** Preview demo aids (InjectPreviewGesture key One/Two) — same place path without SIK Interact agent. */
+  /** Preview demo aids (InjectPreviewGesture key One/Two/Three) — same paths without SIK Interact agent. */
   private bindDemoHotkeys(): void {
     this.createEvent("KeyPressEvent").bind((e: KeyPressEvent) => {
       if (e.key === Keys.One) {
         this.demoPlaceSuggestionOnTable()
       } else if (e.key === Keys.Two) {
         this.demoPlaceAgendaOnWall()
+      } else if (e.key === Keys.Three) {
+        // Package E — open Learn Mode Aim Practice without pinching Instructions.
+        this.handleOpenInstructions()
+        this.learnModeController.setMode("handAim")
+        print("RehearsalBand: demo hotkey Three → Learn Mode Aim Practice")
+      } else if (e.key === Keys.Four || e.key === Keys.Five) {
+        // Package E demo throws (A=Four, B=Five) — primary path is SIK aim + pinch.
+        const handAim = this.learnModeController.getHandAim()
+        if (handAim && this.learnModeController.getActiveMode() === "handAim") {
+          handAim.demoAimAndThrow(e.key === Keys.Four ? 0 : 1)
+        }
       }
     })
   }

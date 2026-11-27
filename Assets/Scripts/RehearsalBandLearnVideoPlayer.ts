@@ -94,8 +94,9 @@ export class RehearsalBandLearnVideoPlayer extends BaseScriptComponent {
     const root = global.scene.createSceneObject("ZipZapZopExplainer")
     root.setParent(this.getSceneObject())
     root.getTransform().setLocalPosition(new vec3(0, 0, 0))
-    // PlaneMeshPreset is XZ (normal +Y). Pitch −90° so it stands as an XY billboard facing +Z (user).
-    root.getTransform().setLocalRotation(quat.fromEulerAngles(-Math.PI / 2, 0, 0))
+    // PlaneMeshPreset is XZ (normal +Y). Pitch −90° stands it as a billboard; roll 180°
+    // keeps texture V upright when viewed from the Learn Mode +Z (user) side.
+    root.getTransform().setLocalRotation(quat.fromEulerAngles(-Math.PI / 2, 0, Math.PI))
     root.getTransform().setLocalScale(new vec3(this.panelWidth, 1, this.panelHeight))
     this.frameRoot = root
 

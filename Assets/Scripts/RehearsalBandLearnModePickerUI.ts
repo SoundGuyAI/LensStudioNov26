@@ -16,7 +16,7 @@ import {
 } from "SpectaclesUIKit.lspkg/Scripts/Components/Layout2D/Flex/FlexTypes"
 import Event from "SpectaclesInteractionKit.lspkg/Utils/Event"
 
-export type LearnModeKind = "video" | "demo3d" | "teleprompter"
+export type LearnModeKind = "video" | "demo3d" | "teleprompter" | "handAim"
 
 const imageMaterial = requireAsset("../Materials/ImageMaterial.mat") as Material
 const closeIcon = requireAsset("../Icons/close.png") as Texture
@@ -45,19 +45,20 @@ export class RehearsalBandLearnModePickerUI extends BaseScriptComponent {
 
   @ui.group_start("Settings")
   @input
-  @widget(new SliderWidget(20, 40, 0.5))
+  @widget(new SliderWidget(20, 44, 0.5))
   @hint("Picker panel width in cm")
-  panelWidth: number = 32
+  panelWidth: number = 34
 
   @input
-  @widget(new SliderWidget(10, 24, 0.5))
+  @widget(new SliderWidget(10, 28, 0.5))
   @hint("Picker panel height in cm")
-  panelHeight: number = 14
+  panelHeight: number = 17
   @ui.group_end
 
   public onSelectVideo: Event<void> = new Event<void>()
   public onSelectDemo3d: Event<void> = new Event<void>()
   public onSelectTeleprompter: Event<void> = new Event<void>()
+  public onSelectHandAim: Event<void> = new Event<void>()
   public onClose: Event<void> = new Event<void>()
 
   private titleText: Text | null = null
@@ -107,7 +108,13 @@ export class RehearsalBandLearnModePickerUI extends BaseScriptComponent {
       return
     }
     const label =
-      mode === "video" ? "Video" : mode === "demo3d" ? "3D Demo" : "Teleprompter"
+      mode === "video"
+        ? "Video"
+        : mode === "demo3d"
+          ? "3D Demo"
+          : mode === "handAim"
+            ? "Aim Practice"
+            : "Teleprompter"
     this.modeCaption.text = `Mode: ${label}`
   }
 
@@ -147,6 +154,19 @@ export class RehearsalBandLearnModePickerUI extends BaseScriptComponent {
     this.addActionButton(row, "Video", null, () => this.onSelectVideo.invoke(), btnW)
     this.addActionButton(row, "3D Demo", null, () => this.onSelectDemo3d.invoke(), btnW)
     this.addActionButton(row, "Teleprompter", null, () => this.onSelectTeleprompter.invoke(), btnW)
+
+    // Phase 2 (Package E) — second row keeps teach modes uncrowded.
+    const practiceRow = global.scene.createSceneObject("PracticeRow")
+    practiceRow.setParent(parent)
+    const practiceItem = practiceRow.createComponent(FlexItem.getTypeName()) as FlexItem
+    practiceItem.overrideHeight = 3.0
+    this.addActionButton(
+      practiceRow,
+      "Aim Practice",
+      null,
+      () => this.onSelectHandAim.invoke(),
+      this.panelWidth - 1.6,
+    )
   }
 
   private addActionButton(

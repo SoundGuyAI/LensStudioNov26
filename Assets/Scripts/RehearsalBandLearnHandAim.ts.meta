@@ -1,0 +1,72 @@
+- !<AssetImportMetadata/81dd3e31-f880-48e7-95fb-dd4d8c6749fe>
+  ImportedAssetIds:
+    TypeScriptAsset: !<reference> effd135f-ee79-4d1a-9e56-2b2a4677091f
+  ImporterName: TypeScriptAssetImporter
+  PrimaryAsset: !<reference> effd135f-ee79-4d1a-9e56-2b2a4677091f
+  PackageType: NotAPackage
+  LegacyPackagePolicy: ~
+  ExtraData:
+    {}
+  AssetDataMap:
+    TypeScriptAsset: !<own> 9d3ef87e-910d-4bdf-aa70-cd8c45c61ac7
+  DependentFiles:
+    []
+  ImporterSettings: !<AssetImporterSettings>
+    {}
+  CompressionSettings: !<own> 00000000-0000-0000-0000-000000000000
+- !<TypeScriptAssetData/9d3ef87e-910d-4bdf-aa70-cd8c45c61ac7>
+  SvgIcon: ""
+  SetupScript:
+    code: ""
+  Description: ""
+  VersionMajor: 0
+  VersionMinor: 0
+  VersionPatch: 0
+  VersionPrerelease: ""
+  UpdateOrder: 0
+  ComponentUid: 62e1779d-5563-43e3-946b-6a002fecafb1
+  ExportUid: 00000000-0000-0000-0000-000000000000
+  PackagePolicy: CanBeUnpacked
+  ScriptInputsHidden:
+    actorHeightCm: false
+    aimDotThreshold: false
+    flySeconds: false
+    forwardDistanceCm: false
+    ignoreTriggerFrames: false
+    material: false
+    sideSeparationCm: false
+  ScriptTypesHidden:
+    {}
+  ReadMe: !<reference> 00000000-0000-0000-0000-000000000000
+  DeclarationFile: !<reference> 00000000-0000-0000-0000-000000000000
+  Tags:
+    []
+  Attachments:
+    []
+  DefaultScriptInputs:
+    - material: !<reference.Material> 00000000-0000-0000-0000-000000000000
+      actorHeightCm: !<float> 100.000000
+      forwardDistanceCm: !<float> 150.000000
+      sideSeparationCm: !<float> 70.000000
+      aimDotThreshold: 0.820000
+      flySeconds: 0.450000
+      ignoreTriggerFrames: !<float> 10.000000
+  ScriptTypes:
+    -
+      {}
+  InputLines:
+    - '// @ui {"widget":"label", "label":"<span style=\"color: #60A5FA;\">RehearsalBandLearnHandAim – Phase 2 aim practice (feel unproven)</span>"}'
+    - '// @ui {"widget":"separator"}'
+    - '// @ui {"widget":"group_start", "label":"Assets"}'
+    - '// @input Asset.Material material {"hint":"vertexBaseColorMaterial (SimpleVertexBaseColor.lspkg)"}'
+    - '// @ui {"widget":"group_end"}'
+    - '// @ui {"widget":"group_start", "label":"Layout (cm)"}'
+    - '// @input float actorHeightCm = 100 {"hint":"Mock person height", "widget":"slider", "min":60, "max":140, "step":1}'
+    - '// @input float forwardDistanceCm = 150 {"hint":"Distance in front of camera for targets", "widget":"slider", "min":100, "max":220, "step":5}'
+    - '// @input float sideSeparationCm = 70 {"hint":"Half-separation left/right from look axis", "widget":"slider", "min":40, "max":120, "step":5}'
+    - '// @input float aimDotThreshold = 0.82 {"hint":"Aim cone: min forward·toTarget for a hit (higher = stricter)", "widget":"slider", "min":0.3, "max":1, "step":0.05}'
+    - '// @ui {"widget":"group_end"}'
+    - '// @ui {"widget":"group_start", "label":"Throw"}'
+    - '// @input float flySeconds = 0.45 {"widget":"slider", "min":0.2, "max":1.2, "step":0.05}'
+    - '// @input float ignoreTriggerFrames = 10 {"hint":"Ignore first frames after enable so menu pinch does not throw"}'
+    - '// @ui {"widget":"group_end"}'

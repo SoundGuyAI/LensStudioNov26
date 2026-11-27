@@ -29,6 +29,7 @@
   PackagePolicy: CanBeUnpacked
   ScriptInputsHidden:
     demo3d: false
+    handAim: false
     pickerUI: false
     teleprompterUI: false
     videoPlayer: false
@@ -45,6 +46,7 @@
       teleprompterUI: !<MappingBased.AssignableType_2> 00000000-0000-0000-0000-000000000000
       videoPlayer: !<MappingBased.AssignableType_3> 00000000-0000-0000-0000-000000000000
       demo3d: !<MappingBased.AssignableType_4> 00000000-0000-0000-0000-000000000000
+      handAim: !<MappingBased.AssignableType_5> 00000000-0000-0000-0000-000000000000
   ScriptTypes:
     -
       {}
@@ -55,5 +57,6 @@
     - '// @input AssignableType_1 pickerUI {"hint":"Mode picker + Close chrome"}'
     - '// @input AssignableType_2 teleprompterUI {"hint":"Teleprompter panel (content from LearnGameContent)"}'
     - '// @input AssignableType_3 videoPlayer {"hint":"Video stub panel (Package C)"}'
-    - '// @input AssignableType_4 demo3d {"hint":"3D demo stub panel (Package D)"}'
+    - '// @input AssignableType_4 demo3d {"hint":"3D Zip Zap Zop demo (Package D)"}'
+    - '// @input AssignableType_5 handAim {"hint":"Phase 2 hand-aim practice at mock people (Package E)"}'
     - '// @ui {"widget":"group_end"}'

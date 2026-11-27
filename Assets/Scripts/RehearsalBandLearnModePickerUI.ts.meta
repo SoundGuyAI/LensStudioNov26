@@ -48,6 +48,6 @@
     - '// @ui {"widget":"label", "label":"<span style=\"color: #60A5FA;\">RehearsalBandLearnModePickerUI – Learn Mode chrome</span>"}'
     - '// @ui {"widget":"separator"}'
     - '// @ui {"widget":"group_start", "label":"Settings"}'
-    - '// @input float panelWidth = 32 {"hint":"Picker panel width in cm", "widget":"slider", "min":20, "max":40, "step":0.5}'
-    - '// @input float panelHeight = 14 {"hint":"Picker panel height in cm", "widget":"slider", "min":10, "max":24, "step":0.5}'
+    - '// @input float panelWidth = 34 {"hint":"Picker panel width in cm", "widget":"slider", "min":20, "max":44, "step":0.5}'
+    - '// @input float panelHeight = 17 {"hint":"Picker panel height in cm", "widget":"slider", "min":10, "max":28, "step":0.5}'
     - '// @ui {"widget":"group_end"}'

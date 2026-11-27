@@ -11,6 +11,7 @@ import {LearnModeKind, RehearsalBandLearnModePickerUI} from "./RehearsalBandLear
 import {RehearsalBandTeleprompterUI} from "./RehearsalBandTeleprompterUI"
 import {RehearsalBandLearnVideoPlayer} from "./RehearsalBandLearnVideoPlayer"
 import {RehearsalBandLearnDemo3D} from "./RehearsalBandLearnDemo3D"
+import {RehearsalBandLearnHandAim} from "./RehearsalBandLearnHandAim"
 
 @component
 export class RehearsalBandLearnModeController extends BaseScriptComponent {
@@ -33,6 +34,10 @@ export class RehearsalBandLearnModeController extends BaseScriptComponent {
   @input
   @hint("3D Zip Zap Zop demo (Package D)")
   demo3d!: RehearsalBandLearnDemo3D
+
+  @input
+  @hint("Phase 2 hand-aim practice at mock people (Package E)")
+  handAim!: RehearsalBandLearnHandAim
   @ui.group_end
 
   /** Fired after Close hides the shell. Timer is intentionally untouched. */
@@ -57,7 +62,7 @@ export class RehearsalBandLearnModeController extends BaseScriptComponent {
   }
 
   openForExercise(exercise: Exercise): void {
-    if (!this.pickerUI || !this.teleprompterUI || !this.videoPlayer || !this.demo3d) {
+    if (!this.pickerUI || !this.teleprompterUI || !this.videoPlayer || !this.demo3d || !this.handAim) {
       print("RehearsalBandLearnModeController: required @input not wired.")
       return
     }
@@ -98,6 +103,10 @@ export class RehearsalBandLearnModeController extends BaseScriptComponent {
     return this.activeMode
   }
 
+  getHandAim(): RehearsalBandLearnHandAim | null {
+    return this.handAim ?? null
+  }
+
   setMode(mode: LearnModeKind): void {
     this.activeMode = mode
     if (this.pickerUI) {
@@ -112,6 +121,16 @@ export class RehearsalBandLearnModeController extends BaseScriptComponent {
     if (this.demo3d) {
       this.demo3d.getSceneObject().enabled = mode === "demo3d"
     }
+    if (this.handAim) {
+      const wantAim = mode === "handAim"
+      this.handAim.getSceneObject().enabled = wantAim
+      // Explicit start/stop — OnEnable can race parent LearnModeAnchor enable.
+      if (wantAim) {
+        this.handAim.startPractice()
+      } else {
+        this.handAim.stopPractice()
+      }
+    }
   }
 
   private bindPickerEvents(): void {
@@ -121,6 +140,7 @@ export class RehearsalBandLearnModeController extends BaseScriptComponent {
     this.pickerUI.onSelectVideo.add(() => this.setMode("video"))
     this.pickerUI.onSelectDemo3d.add(() => this.setMode("demo3d"))
     this.pickerUI.onSelectTeleprompter.add(() => this.setMode("teleprompter"))
+    this.pickerUI.onSelectHandAim.add(() => this.setMode("handAim"))
     this.pickerUI.onClose.add(() => this.close())
   }
 }
