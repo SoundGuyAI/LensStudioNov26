@@ -31,7 +31,7 @@ export class RehearsalBandLearnModeController extends BaseScriptComponent {
   videoPlayer!: RehearsalBandLearnVideoPlayer
 
   @input
-  @hint("3D demo stub panel (Package D)")
+  @hint("3D Zip Zap Zop demo (Package D)")
   demo3d!: RehearsalBandLearnDemo3D
   @ui.group_end
 

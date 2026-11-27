@@ -28,8 +28,13 @@
   ExportUid: 00000000-0000-0000-0000-000000000000
   PackagePolicy: CanBeUnpacked
   ScriptInputsHidden:
-    panelHeight: false
-    panelWidth: false
+    actorHeightCm: false
+    circleRadiusCm: false
+    flySeconds: false
+    holdSeconds: false
+    material: false
+    suggestionUI: false
+    surfaceLiftCm: false
   ScriptTypesHidden:
     {}
   ReadMe: !<reference> 00000000-0000-0000-0000-000000000000
@@ -39,15 +44,29 @@
   Attachments:
     []
   DefaultScriptInputs:
-    - panelWidth: !<float> 32.000000
-      panelHeight: !<float> 12.000000
+    - material: !<reference.Material> 00000000-0000-0000-0000-000000000000
+      suggestionUI: !<MappingBased.AssignableType_1> 00000000-0000-0000-0000-000000000000
+      actorHeightCm: !<float> 12.000000
+      circleRadiusCm: !<float> 9.000000
+      surfaceLiftCm: 1.500000
+      holdSeconds: 0.450000
+      flySeconds: 0.750000
   ScriptTypes:
     -
       {}
   InputLines:
-    - '// @ui {"widget":"label", "label":"<span style=\"color: #60A5FA;\">RehearsalBandLearnDemo3D – stub (Package D)</span>"}'
+    - '// @ui {"widget":"label", "label":"<span style=\"color: #60A5FA;\">RehearsalBandLearnDemo3D – Zip Zap Zop 3D demo</span>"}'
     - '// @ui {"widget":"separator"}'
-    - '// @ui {"widget":"group_start", "label":"Settings"}'
-    - '// @input float panelWidth = 32 {"widget":"slider", "min":18, "max":40, "step":0.5}'
-    - '// @input float panelHeight = 12 {"widget":"slider", "min":8, "max":24, "step":0.5}'
+    - '// @ui {"widget":"group_start", "label":"Assets"}'
+    - '// @input Asset.Material material {"hint":"vertexBaseColorMaterial (SimpleVertexBaseColor.lspkg)"}'
+    - '// @input AssignableType_1 suggestionUI {"hint":"Optional: dim suggestion card while demo runs"}'
+    - '// @ui {"widget":"group_end"}'
+    - '// @ui {"widget":"group_start", "label":"Layout"}'
+    - '// @input float actorHeightCm = 12 {"hint":"Mock actor height in cm", "widget":"slider", "min":8, "max":15, "step":0.5}'
+    - '// @input float circleRadiusCm = 9 {"hint":"Triangle circle radius in cm", "widget":"slider", "min":6, "max":14, "step":0.5}'
+    - '// @input float surfaceLiftCm = 1.5 {"hint":"Local Y lift above Demo3DUI / table"}'
+    - '// @ui {"widget":"group_end"}'
+    - '// @ui {"widget":"group_start", "label":"Timing"}'
+    - '// @input float holdSeconds = 0.45 {"widget":"slider", "min":0.25, "max":1.5, "step":0.05}'
+    - '// @input float flySeconds = 0.75 {"widget":"slider", "min":0.35, "max":1.8, "step":0.05}'
     - '// @ui {"widget":"group_end"}'

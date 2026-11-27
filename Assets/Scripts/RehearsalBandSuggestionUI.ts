@@ -63,10 +63,14 @@ export class RehearsalBandSuggestionUI extends BaseScriptComponent {
   private kindText: Text | null = null
   private bodyText: Text | null = null
   private hintText: Text | null = null
+  private contentRoot: SceneObject | null = null
+  private backPlate: BackPlate | null = null
+  private isDimmed = false
 
   onAwake(): void {
     this.getSceneObject().createComponent("Component.Canvas")
     const backPlate = this.getSceneObject().createComponent(BackPlate.getTypeName()) as BackPlate
+    this.backPlate = backPlate
     backPlate.size = new vec2(this.panelWidth, this.panelHeight)
     // Whole-card pinch advances the suggestion. Prefer BackPlate as the IK
     // target (large collider) so LEAF does not hit target_overlap against the
@@ -77,11 +81,15 @@ export class RehearsalBandSuggestionUI extends BaseScriptComponent {
         return
       }
       interactable.onTriggerEnd.add(() => {
+        if (this.isDimmed) {
+          return
+        }
         this.onChangeSuggestion.invoke()
       })
     })
 
     const content = global.scene.createSceneObject("Content")
+    this.contentRoot = content
     content.setParent(this.getSceneObject())
     content.getTransform().setLocalPosition(new vec3(0, 0, 0.6))
 
@@ -115,10 +123,36 @@ export class RehearsalBandSuggestionUI extends BaseScriptComponent {
       this.bodyText.text = body
     }
     this.getSceneObject().enabled = true
+    // Re-apply dim after show so Learn Demo3D can keep the card quiet.
+    this.applyDimVisuals()
   }
 
   hideSuggestion(): void {
     this.getSceneObject().enabled = false
+  }
+
+  /**
+   * Soft-hide card visuals during 3D Demo without destroying the object.
+   * Pinch is ignored while dimmed; undim restores content + BackPlate size.
+   */
+  setDimmed(dimmed: boolean): void {
+    this.isDimmed = dimmed
+    this.applyDimVisuals()
+  }
+
+  isSuggestionDimmed(): boolean {
+    return this.isDimmed
+  }
+
+  private applyDimVisuals(): void {
+    if (this.contentRoot) {
+      this.contentRoot.enabled = !this.isDimmed
+    }
+    if (this.backPlate) {
+      this.backPlate.size = this.isDimmed
+        ? new vec2(0.05, 0.05)
+        : new vec2(this.panelWidth, this.panelHeight)
+    }
   }
 
   private addLabel(parent: SceneObject, label: string, role: TextRole, height: number): Text {

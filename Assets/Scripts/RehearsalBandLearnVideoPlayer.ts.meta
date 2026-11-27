@@ -28,8 +28,14 @@
   ExportUid: 00000000-0000-0000-0000-000000000000
   PackagePolicy: CanBeUnpacked
   ScriptInputsHidden:
+    forwardOffsetCm: false
+    frameMaterial: false
+    frames: false
     panelHeight: false
     panelWidth: false
+    planeMesh: false
+    secondsPerFrame: false
+    verticalOffsetCm: false
   ScriptTypesHidden:
     {}
   ReadMe: !<reference> 00000000-0000-0000-0000-000000000000
@@ -39,15 +45,30 @@
   Attachments:
     []
   DefaultScriptInputs:
-    - panelWidth: !<float> 32.000000
+    - frames: !<reference.Texture[]>
+        []
+      planeMesh: !<reference.RenderMesh> 00000000-0000-0000-0000-000000000000
+      frameMaterial: !<reference.Material> 00000000-0000-0000-0000-000000000000
+      panelWidth: !<float> 32.000000
       panelHeight: !<float> 12.000000
+      forwardOffsetCm: !<float> 150.000000
+      verticalOffsetCm: !<float> 12.000000
+      secondsPerFrame: 1.400000
   ScriptTypes:
     -
       {}
   InputLines:
-    - '// @ui {"widget":"label", "label":"<span style=\"color: #60A5FA;\">RehearsalBandLearnVideoPlayer – stub (Package C)</span>"}'
+    - '// @ui {"widget":"label", "label":"<span style=\"color: #60A5FA;\">RehearsalBandLearnVideoPlayer – Zip Zap Zop explainer</span>"}'
     - '// @ui {"widget":"separator"}'
-    - '// @ui {"widget":"group_start", "label":"Settings"}'
-    - '// @input float panelWidth = 32 {"widget":"slider", "min":18, "max":40, "step":0.5}'
-    - '// @input float panelHeight = 12 {"widget":"slider", "min":8, "max":24, "step":0.5}'
+    - '// @ui {"widget":"group_start", "label":"Media"}'
+    - '// @input Asset.Texture[] frames = {} {"hint":"Storyboard frames in cycle order (Zip → Zap → Zop…)"}'
+    - '// @input Asset.RenderMesh planeMesh {"hint":"Plane mesh for the explainer billboard"}'
+    - '// @input Asset.Material frameMaterial {"hint":"Image/Unlit material with baseTex (cloned at runtime)"}'
+    - '// @ui {"widget":"group_end"}'
+    - '// @ui {"widget":"group_start", "label":"Layout"}'
+    - '// @input float panelWidth = 72 {"hint":"Billboard width in cm", "widget":"slider", "min":40, "max":100, "step":1}'
+    - '// @input float panelHeight = 42 {"hint":"Billboard height in cm", "widget":"slider", "min":24, "max":60, "step":1}'
+    - '// @input float forwardOffsetCm = 150 {"hint":"Local −Z offset toward front/wall (cm). BackPlate +Z faces user.", "widget":"slider", "min":80, "max":220, "step":5}'
+    - '// @input float verticalOffsetCm = 12 {"hint":"Local Y lift above table shell content (cm)", "widget":"slider", "min":-20, "max":40, "step":1}'
+    - '// @input float secondsPerFrame = 1.4 {"hint":"Seconds per storyboard frame", "widget":"slider", "min":0.4, "max":3, "step":0.1}'
     - '// @ui {"widget":"group_end"}'

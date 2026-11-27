@@ -16,6 +16,7 @@ export interface LearnGamePack {
   displayName: string
   teleprompterLines: string[]
   videoAssetPath?: string
+  /** Optional path to Package D demo assets (actors/ball helpers). */
   demo3dRootPath?: string
   voCueIds?: string[]
   canonicalRulesSummary: string
@@ -48,6 +49,7 @@ const ZIP_ZAP_ZOP: LearnGamePack = {
     "Repeat the cycle",
     "Eye contact before you pass",
   ],
+  demo3dRootPath: "LearnGames/ZipZapZop/Demo3D",
   voCueIds: [],
   canonicalRulesSummary:
     "Players stand in a circle and pass an energy impulse with clear eye contact and a committed gesture (point or clap). Word order always cycles Zip → Zap → Zop → Zip. Focus on receiving before sending and shared rhythm; on a mistake, celebrate briefly and restart from Zip. Speed comes after clarity — energy should never hit the floor.",
