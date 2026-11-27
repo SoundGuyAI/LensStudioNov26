@@ -1,0 +1,31 @@
+name: Decode Learn Mode VO clips (one-time)
+
+on:
+  push:
+    branches: [docs/learn-mode-vo-delivery]
+    paths: ['agent/vo_payload/**']
+
+permissions:
+  contents: write
+
+jobs:
+  decode:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+      - name: Unpack WAVs into Assets/LearnGames/ZipZapZop/VO
+        run: |
+          set -e
+          ls -la agent/vo_payload
+          mkdir -p /tmp/vo Assets/LearnGames/ZipZapZop/VO
+          unzip -o -j agent/vo_payload/*.zip -d /tmp/vo
+          cp /tmp/vo/ZipZapZop_VO_*.wav Assets/LearnGames/ZipZapZop/VO/
+          git rm -r -q agent/vo_payload
+          git config user.name "SoundGuyAiAgents"
+          git config user.email "soundguyaiagents@users.noreply.github.com"
+          git add Assets/LearnGames/ZipZapZop/VO
+          git commit -m "Add Learn Mode Zip Zap Zop VO (11 WAVs via Git LFS)"
+          git lfs ls-files
+          git push
