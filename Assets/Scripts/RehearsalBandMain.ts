@@ -320,6 +320,16 @@ export class RehearsalBandMain extends BaseScriptComponent {
         this.handleOpenInstructions()
         this.learnModeController.setMode("handAim")
         print("RehearsalBand: demo hotkey Three → Learn Mode Aim Practice")
+      } else if (e.key === Keys.Six) {
+        // Package F — open Learn Mode on Teleprompter so ZipZapZop VO can play.
+        this.handleOpenInstructions()
+        print("RehearsalBand: demo hotkey Six → Learn Mode Teleprompter + VO")
+      } else if (e.key === Keys.Seven) {
+        // Package F — close Learn Mode (stops VO) without pinching Close.
+        if (this.learnModeController.isOpen()) {
+          this.learnModeController.close()
+          print("RehearsalBand: demo hotkey Seven → Learn Mode close")
+        }
       } else if (e.key === Keys.Four || e.key === Keys.Five) {
         // Package E demo throws (A=Four, B=Five) — primary path is SIK aim + pinch.
         const handAim = this.learnModeController.getHandAim()

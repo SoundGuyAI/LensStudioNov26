@@ -52,7 +52,7 @@ export class RehearsalBandLearnModePickerUI extends BaseScriptComponent {
   @input
   @widget(new SliderWidget(10, 28, 0.5))
   @hint("Picker panel height in cm")
-  panelHeight: number = 17
+  panelHeight: number = 20
   @ui.group_end
 
   public onSelectVideo: Event<void> = new Event<void>()
@@ -60,9 +60,12 @@ export class RehearsalBandLearnModePickerUI extends BaseScriptComponent {
   public onSelectTeleprompter: Event<void> = new Event<void>()
   public onSelectHandAim: Event<void> = new Event<void>()
   public onClose: Event<void> = new Event<void>()
+  public onReplayVo: Event<void> = new Event<void>()
+  public onToggleMuteVo: Event<void> = new Event<void>()
 
   private titleText: Text | null = null
   private modeCaption: Text | null = null
+  private muteButtonLabel: ElementContent | null = null
 
   onAwake(): void {
     void imageMaterial
@@ -90,6 +93,7 @@ export class RehearsalBandLearnModePickerUI extends BaseScriptComponent {
     this.titleText = this.addLabel(content, "Learn: —", "Headline2", 2.8)
     this.modeCaption = this.addLabel(content, "Mode: Teleprompter", "Caption", 2.0)
     this.addModeRow(content)
+    this.addVoControlsRow(content)
     this.addActionButton(content, "Close", closeIcon, () => this.onClose.invoke(), this.panelWidth - 1.6)
 
     flex.onLayoutComplete.add((r) => {
@@ -116,6 +120,12 @@ export class RehearsalBandLearnModePickerUI extends BaseScriptComponent {
             ? "Aim Practice"
             : "Teleprompter"
     this.modeCaption.text = `Mode: ${label}`
+  }
+
+  setMuteLabel(muted: boolean): void {
+    if (this.muteButtonLabel) {
+      this.muteButtonLabel.text = muted ? "Unmute VO" : "Mute VO"
+    }
   }
 
   private addLabel(parent: SceneObject, label: string, role: TextRole, height: number): Text {
@@ -169,13 +179,38 @@ export class RehearsalBandLearnModePickerUI extends BaseScriptComponent {
     )
   }
 
+  private addVoControlsRow(parent: SceneObject): void {
+    const row = global.scene.createSceneObject("VoControlsRow")
+    row.setParent(parent)
+    const rowItem = row.createComponent(FlexItem.getTypeName()) as FlexItem
+    rowItem.overrideHeight = 3.0
+
+    const rowFlex = row.createComponent(FlexLayout.getTypeName()) as FlexLayout
+    rowFlex.width = this.panelWidth - 1.6
+    rowFlex.height = 3.0
+    rowFlex.direction = FlexDirection.Row
+    rowFlex.alignItems = FlexAlign.Stretch
+    rowFlex.justifyContent = FlexJustify.SpaceBetween
+    rowFlex.columnGap = 0.4
+
+    const half = (this.panelWidth - 1.6 - 0.4) / 2
+    this.addActionButton(row, "Replay VO", null, () => this.onReplayVo.invoke(), half)
+    this.muteButtonLabel = this.addActionButton(
+      row,
+      "Mute VO",
+      null,
+      () => this.onToggleMuteVo.invoke(),
+      half,
+    )
+  }
+
   private addActionButton(
     parent: SceneObject,
     label: string,
     icon: Texture | null,
     onClick: () => void,
     width: number,
-  ): void {
+  ): ElementContent {
     const so = global.scene.createSceneObject(label)
     so.setParent(parent)
     const btn = so.createComponent(Button.getTypeName()) as Button
@@ -192,5 +227,6 @@ export class RehearsalBandLearnModePickerUI extends BaseScriptComponent {
     this.createEvent("OnStartEvent").bind(() => {
       btn.onTriggerUp.add(onClick)
     })
+    return ec
   }
 }

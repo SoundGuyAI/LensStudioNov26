@@ -7,7 +7,7 @@
     - !<own> f1d30812-0916-4b84-b8ea-b5ec164c4213
     - !<own> bf0d589d-f163-4345-b8dc-c9d357921dc6
     - !<own> b153b192-9d2e-4c5d-8840-e2c80729c8bc
-    - !<own> 0bf70bd2-ceed-4217-ab73-995c42213cdd
+    - !<own> 6b4e6b67-66da-4cba-a237-1ba8b2a92524
   layers: !<Layers/267ee9a7-aff2-4f9d-9a49-f71214747d03>
     userLayers:
       - id: 1
@@ -383,21 +383,6 @@
     - !<own> 05147ea1-cb6b-4629-9484-199a4aa4d92a
   Components:
     []
-- !<SceneObject/0bf70bd2-ceed-4217-ab73-995c42213cdd>
-  PrefabRemaps:
-    []
-  Name: AiPreviewAgent Handler
-  Enabled: true
-  Layers: 1
-  LocalTransform: !<TransformEntity>
-    Position: {x: 0.000000, y: 0.000000, z: 0.000000}
-    Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
-    Scale: {x: 1.000000, y: 1.000000, z: 1.000000}
-    HasSegmentScaleCompensation: false
-  Children:
-    []
-  Components:
-    - !<own> 86614b0e-e252-4c33-927d-16b5e9df9826
 - !<SceneObject/0c355300-e635-47c1-a8c3-5ddef30b8824>
   PrefabRemaps:
     []
@@ -1085,6 +1070,7 @@
     - !<own> a9a68452-fe2f-4832-bd69-0e63adb0401d
     - !<own> 080b2ac1-ba93-45a7-9442-6a35925227de
     - !<own> 2af57c1b-51ee-423d-9f40-06f95184ca4e
+    - !<own> d5d06b70-bf26-4e53-9524-3efabf26ec5f
   Components:
     - !<own> 67f4b4a5-1e5c-49ff-8961-ba6d0358519c
 - !<SceneObject/4c195c04-c397-454e-bd08-3485f37d84fe>
@@ -1407,6 +1393,7 @@
       videoPlayer: !<MappingBased.AssignableType_3> bf44f199-8c6b-4cf0-942b-778ffb56cd7d
       demo3d: !<MappingBased.AssignableType_4> e176b777-350a-4e6a-81dc-9028cbde463f
       handAim: !<MappingBased.AssignableType_5> 250a795c-14ad-4836-8332-bbe6bae308ed
+      voPlayer: !<MappingBased.AssignableType_6> 95a401a2-d7ff-4ced-8adb-30546300fdc4
   ScriptTypes:
     "":
       {}
@@ -1491,6 +1478,21 @@
     - !<own> ca40734c-262f-48d3-affa-9f99cd2940f7
   Components:
     []
+- !<SceneObject/6b4e6b67-66da-4cba-a237-1ba8b2a92524>
+  PrefabRemaps:
+    []
+  Name: AiPreviewAgent Handler
+  Enabled: true
+  Layers: 1
+  LocalTransform: !<TransformEntity>
+    Position: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Scale: {x: 1.000000, y: 1.000000, z: 1.000000}
+    HasSegmentScaleCompensation: false
+  Children:
+    []
+  Components:
+    - !<own> f1f4d16f-2bed-413d-a2df-91884b2b1bf4
 - !<SceneObject/6c1f70d7-86d0-4972-b203-29780f8798e6>
   PrefabRemaps:
     []
@@ -1800,22 +1802,6 @@
     - !<own> 47d1a2ae-a189-4487-9271-5d87b62d5dc9
   Components:
     []
-- !<ScriptComponent/86614b0e-e252-4c33-927d-16b5e9df9826>
-  PrefabRemaps:
-    []
-  Name: AgentInspectScript
-  Enabled: true
-  ScriptAsset: !<reference> 0b25079c-f5bf-4c6d-96c4-f43b89dfa213
-  ScriptInputsDefault:
-    {}
-  ScriptTypesDefault:
-    {}
-  ScriptInputs:
-    "":
-      {}
-  ScriptTypes:
-    "":
-      {}
 - !<SceneObject/879ce45b-bd5e-40ff-a3fe-d821523427e4>
   PrefabRemaps:
     []
@@ -1972,6 +1958,23 @@
     - !<own> e9454e66-5d09-4a8a-bcd7-dea762326a48
   Components:
     []
+- !<ScriptComponent/95a401a2-d7ff-4ced-8adb-30546300fdc4>
+  PrefabRemaps:
+    []
+  Name: RehearsalBandLearnModeVoPlayer
+  Enabled: true
+  ScriptAsset: !<reference> f1b1b2ad-10ce-49b3-a6c3-a00ccfd7b74b
+  ScriptInputsDefault:
+    volume: true
+  ScriptTypesDefault:
+    {}
+  ScriptInputs:
+    "":
+      teleprompterUI: !<MappingBased.AssignableType_1> addc9cf6-d680-4ed4-8481-2935a57cdb5a
+      volume: 0.950000
+  ScriptTypes:
+    "":
+      {}
 - !<SceneObject/96b2f02a-a57a-4a47-87df-7d03366fb921>
   PrefabRemaps:
     []
@@ -2743,6 +2746,21 @@
     []
   Components:
     - !<own> 894b728f-96e5-4588-985f-945e98c00896
+- !<SceneObject/d5d06b70-bf26-4e53-9524-3efabf26ec5f>
+  PrefabRemaps:
+    []
+  Name: LearnModeVoPlayer
+  Enabled: true
+  Layers: 1
+  LocalTransform: !<TransformEntity>
+    Position: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Scale: {x: 1.000000, y: 1.000000, z: 1.000000}
+    HasSegmentScaleCompensation: false
+  Children:
+    []
+  Components:
+    - !<own> 95a401a2-d7ff-4ced-8adb-30546300fdc4
 - !<SceneObject/d5f63266-b1ce-419f-847b-3c9f347b3ee2>
   PrefabRemaps:
     []
@@ -3051,6 +3069,22 @@
     - !<own> d5af48a6-192c-4627-9a11-138f489d4769
   Components:
     - !<own> 5141c964-1576-4933-b326-9da7dc9cbb8b
+- !<ScriptComponent/f1f4d16f-2bed-413d-a2df-91884b2b1bf4>
+  PrefabRemaps:
+    []
+  Name: AgentInspectScript
+  Enabled: true
+  ScriptAsset: !<reference> 0b25079c-f5bf-4c6d-96c4-f43b89dfa213
+  ScriptInputsDefault:
+    {}
+  ScriptTypesDefault:
+    {}
+  ScriptInputs:
+    "":
+      {}
+  ScriptTypes:
+    "":
+      {}
 - !<SceneObject/f36287fd-ed56-442d-ba20-78f9ef6f3502>
   PrefabRemaps:
     []
