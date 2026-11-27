@@ -48,10 +48,10 @@ Suggested `voCueIds` for the `zip_zap_zop` pack: the 11 filenames without `.wav`
 
 ## Delivery checklist
 
-- [ ] `Assets/LearnGames/ZipZapZop/VO/` exists (see pending item below)
+- [x] `Assets/LearnGames/ZipZapZop/VO/` exists
 - [x] All 11 files generated with exact names
 - [x] 44.1 kHz WAV, speech clear, no clipping
 - [x] Scripts match the table exactly
 - [x] Existing `TutorialVO/` and `GeneratedSFX/` unchanged
 - [x] Results (generated Nov 27, 2026): voice Gemini TTS Sulafat, enthusiastic workshop-host direction. 11 files, 44.1 kHz mono 16-bit PCM, 200 ms lead-in and 250 ms tail, peak about -1 to -3 dB. Durations 4.0 s to 8.4 s each (01 is 6.2 s, 05 is 4.0 s, 07 is 8.4 s). Script deviations: none. Known quality issues: none measured; a listen-through in preview is still pending.
-- [ ] WAVs committed to `Assets/LearnGames/ZipZapZop/VO/`. **Pending:** this repo tracks `*.wav` in Git LFS and the web uploader cannot push LFS files, so the 11 WAVs are delivered as `ZipZapZop_VO.zip` in a private Drive folder. Unzip into that folder and commit with Git LFS.
+- [x] WAVs committed to `Assets/LearnGames/ZipZapZop/VO/` (11 files, stored with Git LFS). The private Drive zip remains as a backup.
