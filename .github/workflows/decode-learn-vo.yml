@@ -19,9 +19,12 @@ jobs:
         run: |
           set -e
           ls -la agent/vo_payload
-          mkdir -p /tmp/vo Assets/LearnGames/ZipZapZop/VO
-          unzip -o -j agent/vo_payload/*.zip -d /tmp/vo
-          cp /tmp/vo/ZipZapZop_VO_*.wav Assets/LearnGames/ZipZapZop/VO/
+          mkdir -p Assets/LearnGames/ZipZapZop/VO
+          for f in agent/vo_payload/*.wav; do
+            n=$(basename "$f" | sed 's/^[0-9]*-//')
+            cp "$f" "Assets/LearnGames/ZipZapZop/VO/$n"
+          done
+          ls -la Assets/LearnGames/ZipZapZop/VO
           git rm -r -q agent/vo_payload
           git config user.name "SoundGuyAiAgents"
           git config user.email "soundguyaiagents@users.noreply.github.com"
