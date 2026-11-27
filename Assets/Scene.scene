@@ -5,7 +5,9 @@
     - !<own> 0005641c-028d-459a-0000-000000014b4d
     - !<own> f5d74682-203a-4970-81ea-9fa7b88c96bb
     - !<own> f1d30812-0916-4b84-b8ea-b5ec164c4213
-    - !<own> 8a9276a0-b038-4454-b1b6-dba05e758611
+    - !<own> 0c6ddf79-8cee-465c-a775-03933b2c9bf6
+    - !<own> bf0d589d-f163-4345-b8dc-c9d357921dc6
+    - !<own> b153b192-9d2e-4c5d-8840-e2c80729c8bc
   layers: !<Layers/267ee9a7-aff2-4f9d-9a49-f71214747d03>
     userLayers:
       - id: 1
@@ -396,6 +398,21 @@
     - !<own> d90b4bdf-2fbf-4edc-afa1-d23c2d5ba257
   Components:
     []
+- !<SceneObject/0c6ddf79-8cee-465c-a775-03933b2c9bf6>
+  PrefabRemaps:
+    []
+  Name: AiPreviewAgent Handler
+  Enabled: true
+  Layers: 1
+  LocalTransform: !<TransformEntity>
+    Position: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Scale: {x: 1.000000, y: 1.000000, z: 1.000000}
+    HasSegmentScaleCompensation: false
+  Children:
+    []
+  Components:
+    - !<own> bba60131-ebe7-4fe4-a670-a6840a2d965f
 - !<SceneObject/0cffb60e-73f6-43c5-bb4f-286d39e0f1f6>
   PrefabRemaps:
     []
@@ -1027,22 +1044,6 @@
     - !<own> 080b2ac1-ba93-45a7-9442-6a35925227de
   Components:
     - !<own> 67f4b4a5-1e5c-49ff-8961-ba6d0358519c
-- !<ScriptComponent/4a0207bc-1bf7-4dea-a8c4-1c825900b44f>
-  PrefabRemaps:
-    []
-  Name: AgentInspectScript
-  Enabled: true
-  ScriptAsset: !<reference> 0b25079c-f5bf-4c6d-96c4-f43b89dfa213
-  ScriptInputsDefault:
-    {}
-  ScriptTypesDefault:
-    {}
-  ScriptInputs:
-    "":
-      {}
-  ScriptTypes:
-    "":
-      {}
 - !<SceneObject/4c195c04-c397-454e-bd08-3485f37d84fe>
   PrefabRemaps:
     []
@@ -1382,6 +1383,22 @@
       panelWidth: !<float> 70.000000
       panelHeight: !<float> 48.000000
       titleLabel: Workshop Agenda
+  ScriptTypes:
+    "":
+      {}
+- !<ScriptComponent/68f6fd6e-b733-4c1c-a0ce-9a5223b27c64>
+  PrefabRemaps:
+    []
+  Name: LeafIndex
+  Enabled: true
+  ScriptAsset: !<reference> 4c591a5f-df31-4002-a756-809b57c5cf8e
+  ScriptInputsDefault:
+    {}
+  ScriptTypesDefault:
+    {}
+  ScriptInputs:
+    "":
+      {}
   ScriptTypes:
     "":
       {}
@@ -1794,21 +1811,6 @@
     - !<own> 1a4055b9-58e4-432d-8d18-c74306a254be
   Components:
     []
-- !<SceneObject/8a9276a0-b038-4454-b1b6-dba05e758611>
-  PrefabRemaps:
-    []
-  Name: AiPreviewAgent Handler
-  Enabled: true
-  Layers: 1
-  LocalTransform: !<TransformEntity>
-    Position: {x: 0.000000, y: 0.000000, z: 0.000000}
-    Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
-    Scale: {x: 1.000000, y: 1.000000, z: 1.000000}
-    HasSegmentScaleCompensation: false
-  Children:
-    []
-  Components:
-    - !<own> 4a0207bc-1bf7-4dea-a8c4-1c825900b44f
 - !<SceneObject/8b877074-7eee-4be1-b669-714f8d5a1da3>
   PrefabRemaps:
     []
@@ -2210,6 +2212,37 @@
   ScriptTypes:
     "":
       {}
+- !<SceneObject/b153b192-9d2e-4c5d-8840-e2c80729c8bc>
+  PrefabRemaps:
+    []
+  Name: LeafIndex
+  Enabled: true
+  Layers: 1
+  LocalTransform: !<TransformEntity>
+    Position: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Scale: {x: 1.000000, y: 1.000000, z: 1.000000}
+    HasSegmentScaleCompensation: false
+  Children:
+    []
+  Components:
+    - !<own> 68f6fd6e-b733-4c1c-a0ce-9a5223b27c64
+- !<ScriptComponent/b2123c41-1967-4b5c-8ca0-92040db8fe7b>
+  PrefabRemaps:
+    []
+  Name: MessagingBridge
+  Enabled: true
+  ScriptAsset: !<reference> 9aa407db-2872-4afc-a162-cf7faf2a0f29
+  ScriptInputsDefault:
+    {}
+  ScriptTypesDefault:
+    {}
+  ScriptInputs:
+    "":
+      {}
+  ScriptTypes:
+    "":
+      {}
 - !<SceneObject/b22d97e6-4c06-4135-af29-d26adb2b9d86>
   PrefabRemaps:
     []
@@ -2345,6 +2378,22 @@
     - !<own> b786dabc-29e4-4cfa-8a84-f39604ffcbdd
   Components:
     []
+- !<ScriptComponent/bba60131-ebe7-4fe4-a670-a6840a2d965f>
+  PrefabRemaps:
+    []
+  Name: AgentInspectScript
+  Enabled: true
+  ScriptAsset: !<reference> 0b25079c-f5bf-4c6d-96c4-f43b89dfa213
+  ScriptInputsDefault:
+    {}
+  ScriptTypesDefault:
+    {}
+  ScriptInputs:
+    "":
+      {}
+  ScriptTypes:
+    "":
+      {}
 - !<SceneObject/bbcbfc17-8d65-4333-bce1-6f7239f690b8>
   PrefabRemaps:
     []
@@ -2375,6 +2424,21 @@
     - !<own> fe93d992-1114-4f1f-8bef-0a0bbd75747d
   Components:
     []
+- !<SceneObject/bf0d589d-f163-4345-b8dc-c9d357921dc6>
+  PrefabRemaps:
+    []
+  Name: LEAF Plugin Bridge
+  Enabled: true
+  Layers: 1
+  LocalTransform: !<TransformEntity>
+    Position: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Scale: {x: 1.000000, y: 1.000000, z: 1.000000}
+    HasSegmentScaleCompensation: false
+  Children:
+    []
+  Components:
+    - !<own> b2123c41-1967-4b5c-8ca0-92040db8fe7b
 - !<SceneObject/bf2095b6-c6f8-48c8-b840-e0a6cec0dc99>
   PrefabRemaps:
     []

@@ -53,7 +53,7 @@
     - '// @ui {"widget":"separator"}'
     - '// @ui {"widget":"group_start", "label":"References"}'
     - '// @input AssignableType_1 pickerUI {"hint":"Mode picker + Close chrome"}'
-    - '// @input AssignableType_2 teleprompterUI {"hint":"Teleprompter stub panel (Package B)"}'
+    - '// @input AssignableType_2 teleprompterUI {"hint":"Teleprompter panel (content from LearnGameContent)"}'
     - '// @input AssignableType_3 videoPlayer {"hint":"Video stub panel (Package C)"}'
     - '// @input AssignableType_4 demo3d {"hint":"3D demo stub panel (Package D)"}'
     - '// @ui {"widget":"group_end"}'
