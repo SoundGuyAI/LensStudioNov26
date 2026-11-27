@@ -50,7 +50,19 @@ const ZIP_ZAP_ZOP: LearnGamePack = {
     "Eye contact before you pass",
   ],
   demo3dRootPath: "LearnGames/ZipZapZop/Demo3D",
-  voCueIds: [],
+  voCueIds: [
+    "ZipZapZop_VO_01_Intro",
+    "ZipZapZop_VO_02_EnergyBall",
+    "ZipZapZop_VO_03_OneWord",
+    "ZipZapZop_VO_04_Zip",
+    "ZipZapZop_VO_05_Zap",
+    "ZipZapZop_VO_06_Zop",
+    "ZipZapZop_VO_07_Cycle",
+    "ZipZapZop_VO_08_EyeContact",
+    "ZipZapZop_VO_09_Mistake",
+    "ZipZapZop_VO_10_ClarityFirst",
+    "ZipZapZop_VO_11_Close",
+  ],
   canonicalRulesSummary:
     "Players stand in a circle and pass an energy impulse with clear eye contact and a committed gesture (point or clap). Word order always cycles Zip → Zap → Zop → Zip. Focus on receiving before sending and shared rhythm; on a mistake, celebrate briefly and restart from Zip. Speed comes after clarity — energy should never hit the floor.",
   referencesUsed: [

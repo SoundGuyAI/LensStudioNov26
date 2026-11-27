@@ -1,0 +1,55 @@
+- !<AssetImportMetadata/6f6c1a9f-f83b-4d7a-a043-0a8545068fd6>
+  ImportedAssetIds:
+    TypeScriptAsset: !<reference> f1b1b2ad-10ce-49b3-a6c3-a00ccfd7b74b
+  ImporterName: TypeScriptAssetImporter
+  PrimaryAsset: !<reference> f1b1b2ad-10ce-49b3-a6c3-a00ccfd7b74b
+  PackageType: NotAPackage
+  LegacyPackagePolicy: ~
+  ExtraData:
+    {}
+  AssetDataMap:
+    TypeScriptAsset: !<own> 0043c095-081f-4157-ab9e-f88a439d1b03
+  DependentFiles:
+    []
+  ImporterSettings: !<AssetImporterSettings>
+    {}
+  CompressionSettings: !<own> 00000000-0000-0000-0000-000000000000
+- !<TypeScriptAssetData/0043c095-081f-4157-ab9e-f88a439d1b03>
+  SvgIcon: ""
+  SetupScript:
+    code: ""
+  Description: ""
+  VersionMajor: 0
+  VersionMinor: 0
+  VersionPatch: 0
+  VersionPrerelease: ""
+  UpdateOrder: 0
+  ComponentUid: 5a9675d0-a1dc-48e9-a0b9-9c1896479e4e
+  ExportUid: 00000000-0000-0000-0000-000000000000
+  PackagePolicy: CanBeUnpacked
+  ScriptInputsHidden:
+    teleprompterUI: false
+    volume: false
+  ScriptTypesHidden:
+    {}
+  ReadMe: !<reference> 00000000-0000-0000-0000-000000000000
+  DeclarationFile: !<reference> 00000000-0000-0000-0000-000000000000
+  Tags:
+    []
+  Attachments:
+    []
+  DefaultScriptInputs:
+    - teleprompterUI: !<MappingBased.AssignableType_1> 00000000-0000-0000-0000-000000000000
+      volume: 0.950000
+  ScriptTypes:
+    -
+      {}
+  InputLines:
+    - '// @ui {"widget":"label", "label":"<span style=\"color: #60A5FA;\">RehearsalBandLearnModeVoPlayer – Learn Mode VO</span>"}'
+    - '// @ui {"widget":"separator"}'
+    - '// @ui {"widget":"group_start", "label":"References"}'
+    - '// @input AssignableType_1 teleprompterUI {"hint":"Teleprompter panel to highlight lines as cues play"}'
+    - '// @ui {"widget":"group_end"}'
+    - '// @ui {"widget":"group_start", "label":"Settings"}'
+    - '// @input float volume = 0.95 {"hint":"Learn Mode narration volume", "widget":"slider", "min":0, "max":1, "step":0.05}'
+    - '// @ui {"widget":"group_end"}'

@@ -1,6 +1,6 @@
 /**
  * RehearsalBandLearnModeController — open/close Learn Mode + active teach surface.
- * Owns: shell visibility, mode switching, wiring picker ↔ panels + content pack.
+ * Owns: shell visibility, mode switching, wiring picker ↔ panels + content pack + Learn VO.
  * Must not: start/stop workshop timer; author Package C–D media.
  */
 
@@ -12,6 +12,7 @@ import {RehearsalBandTeleprompterUI} from "./RehearsalBandTeleprompterUI"
 import {RehearsalBandLearnVideoPlayer} from "./RehearsalBandLearnVideoPlayer"
 import {RehearsalBandLearnDemo3D} from "./RehearsalBandLearnDemo3D"
 import {RehearsalBandLearnHandAim} from "./RehearsalBandLearnHandAim"
+import {RehearsalBandLearnModeVoPlayer} from "./RehearsalBandLearnModeVoPlayer"
 
 @component
 export class RehearsalBandLearnModeController extends BaseScriptComponent {
@@ -38,6 +39,10 @@ export class RehearsalBandLearnModeController extends BaseScriptComponent {
   @input
   @hint("Phase 2 hand-aim practice at mock people (Package E)")
   handAim!: RehearsalBandLearnHandAim
+
+  @input
+  @hint("Learn Mode Zip Zap Zop VO player (Package F)")
+  voPlayer!: RehearsalBandLearnModeVoPlayer
   @ui.group_end
 
   /** Fired after Close hides the shell. Timer is intentionally untouched. */
@@ -47,6 +52,7 @@ export class RehearsalBandLearnModeController extends BaseScriptComponent {
   private activeMode: LearnModeKind = "teleprompter"
   /** Parent OnStart runs before children — defer disable one frame so picker bindings land. */
   private pendingInitialHide = false
+  private currentCueCount = 0
 
   onAwake(): void {
     this.createEvent("OnStartEvent").bind(() => {
@@ -78,8 +84,9 @@ export class RehearsalBandLearnModeController extends BaseScriptComponent {
     const pack = getLearnGamePackForExercise(exerciseName)
     const lines = pack ? pack.teleprompterLines : []
     this.teleprompterUI.setLines(lines)
+    this.currentCueCount = pack && pack.voCueIds ? pack.voCueIds.length : 0
     if (pack) {
-      print(`RehearsalBand: Learn content loaded — ${pack.id} (${lines.length} cues)`)
+      print(`RehearsalBand: Learn content loaded — ${pack.id} (${lines.length} lines, ${this.currentCueCount} VO)`)
     } else {
       print(`RehearsalBand: no LearnGamePack for "${exerciseName}"`)
     }
@@ -89,6 +96,7 @@ export class RehearsalBandLearnModeController extends BaseScriptComponent {
     if (!this.isShellOpen) {
       return
     }
+    this.stopLearnVo()
     this.isShellOpen = false
     this.getSceneObject().enabled = false
     this.onClosed.invoke()
@@ -131,6 +139,25 @@ export class RehearsalBandLearnModeController extends BaseScriptComponent {
         this.handAim.stopPractice()
       }
     }
+
+    if (mode === "teleprompter") {
+      this.startLearnVoIfNeeded()
+    } else {
+      this.stopLearnVo()
+    }
+  }
+
+  private startLearnVoIfNeeded(): void {
+    if (!this.voPlayer || this.currentCueCount <= 0) {
+      return
+    }
+    this.voPlayer.startSequence(this.currentCueCount)
+  }
+
+  private stopLearnVo(): void {
+    if (this.voPlayer) {
+      this.voPlayer.stop()
+    }
   }
 
   private bindPickerEvents(): void {
@@ -142,5 +169,17 @@ export class RehearsalBandLearnModeController extends BaseScriptComponent {
     this.pickerUI.onSelectTeleprompter.add(() => this.setMode("teleprompter"))
     this.pickerUI.onSelectHandAim.add(() => this.setMode("handAim"))
     this.pickerUI.onClose.add(() => this.close())
+    this.pickerUI.onReplayVo.add(() => {
+      if (this.voPlayer && this.activeMode === "teleprompter") {
+        this.voPlayer.replay()
+      }
+    })
+    this.pickerUI.onToggleMuteVo.add(() => {
+      if (!this.voPlayer) {
+        return
+      }
+      const muted = this.voPlayer.toggleMute()
+      this.pickerUI.setMuteLabel(muted)
+    })
   }
 }

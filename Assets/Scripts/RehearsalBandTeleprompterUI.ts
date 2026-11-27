@@ -49,6 +49,7 @@ export class RehearsalBandTeleprompterUI extends BaseScriptComponent {
   private linesFlex: FlexLayout | null = null
   private lineTexts: Text[] = []
   private emptyHint: Text | null = null
+  private activeLineIndex = -1
 
   onAwake(): void {
     this.getSceneObject().createComponent("Component.Canvas")
@@ -99,6 +100,7 @@ export class RehearsalBandTeleprompterUI extends BaseScriptComponent {
   /** Replace cue lines from a LearnGamePack (or clear when empty). */
   setLines(lines: string[]): void {
     this.clearDynamicLines()
+    this.activeLineIndex = -1
 
     if (!this.linesRoot || !this.linesFlex) {
       return
@@ -120,6 +122,30 @@ export class RehearsalBandTeleprompterUI extends BaseScriptComponent {
     for (const line of lines) {
       const t = this.addLineLabel(this.linesRoot, line, "Body", rowH)
       this.lineTexts.push(t)
+    }
+    this.refreshLineHighlight()
+  }
+
+  /**
+   * Highlight the active teleprompter step for VO sync.
+   * -1 = none highlighted (intro); 0..n-1 = that line emphasized.
+   */
+  setActiveLineIndex(index: number): void {
+    this.activeLineIndex = index
+    this.refreshLineHighlight()
+  }
+
+  private refreshLineHighlight(): void {
+    for (let i = 0; i < this.lineTexts.length; i++) {
+      const t = this.lineTexts[i]
+      const active = this.activeLineIndex === i
+      const idle = this.activeLineIndex < 0
+      t.textFill.color = idle
+        ? new vec4(1, 1, 1, 0.85)
+        : active
+          ? new vec4(1, 1, 1, 1)
+          : new vec4(1, 1, 1, 0.4)
+      ;(t as Text & {weight?: number}).weight = active ? 700 : TYPE_SCALE.Body.weight
     }
   }
 

@@ -54,6 +54,11 @@ Packages/Icons.lspkg.meta
 Packages/Motion.lspkg
 Packages/Motion.lspkg.meta
 
+# Broken on SIK v0.18 (expects InteractionKit.lspkg) — LS may reinstall locally
+Packages/AiPreviewAgentInteract.lspkg
+Packages/AiPreviewAgentInteract.lspkg.meta
+.quarantine/
+
 # Demo video scratch (regen locally; upload MP4 to YouTube for Devpost)
 devpost/.venv-video/
 devpost/demo-video-frames/

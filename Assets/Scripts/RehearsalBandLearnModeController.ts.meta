@@ -33,6 +33,7 @@
     pickerUI: false
     teleprompterUI: false
     videoPlayer: false
+    voPlayer: false
   ScriptTypesHidden:
     {}
   ReadMe: !<reference> 00000000-0000-0000-0000-000000000000
@@ -47,6 +48,7 @@
       videoPlayer: !<MappingBased.AssignableType_3> 00000000-0000-0000-0000-000000000000
       demo3d: !<MappingBased.AssignableType_4> 00000000-0000-0000-0000-000000000000
       handAim: !<MappingBased.AssignableType_5> 00000000-0000-0000-0000-000000000000
+      voPlayer: !<MappingBased.AssignableType_6> 00000000-0000-0000-0000-000000000000
   ScriptTypes:
     -
       {}
@@ -59,4 +61,5 @@
     - '// @input AssignableType_3 videoPlayer {"hint":"Video stub panel (Package C)"}'
     - '// @input AssignableType_4 demo3d {"hint":"3D Zip Zap Zop demo (Package D)"}'
     - '// @input AssignableType_5 handAim {"hint":"Phase 2 hand-aim practice at mock people (Package E)"}'
+    - '// @input AssignableType_6 voPlayer {"hint":"Learn Mode Zip Zap Zop VO player (Package F)"}'
     - '// @ui {"widget":"group_end"}'
